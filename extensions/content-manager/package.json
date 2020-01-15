@@ -1,0 +1,91 @@
+{
+  "_from": "strapi-plugin-content-manager@3.0.0-beta.17.8",
+  "_id": "strapi-plugin-content-manager@3.0.0-beta.17.8",
+  "_inBundle": false,
+  "_integrity": "sha512-nYxD949FR1C9P9AQYSqAhIxzSs+yIHtPm+3zt6Y5L8yqjO6GJ8JieyRCvQV0a8W/yPNOoQ4HbQEdw4dVo8dkEA==",
+  "_location": "/strapi-plugin-content-manager",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "strapi-plugin-content-manager@3.0.0-beta.17.8",
+    "name": "strapi-plugin-content-manager",
+    "escapedName": "strapi-plugin-content-manager",
+    "rawSpec": "3.0.0-beta.17.8",
+    "saveSpec": null,
+    "fetchSpec": "3.0.0-beta.17.8"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.0.0-beta.17.8.tgz",
+  "_shasum": "1cea26f050ee7feac66e8b66f96a09783a716598",
+  "_spec": "strapi-plugin-content-manager@3.0.0-beta.17.8",
+  "_where": "C:\\Users\\eyuz78\\development\\corporate-ui-cms",
+  "author": {
+    "name": "Strapi team",
+    "email": "hi@strapi.io",
+    "url": "http://strapi.io"
+  },
+  "bugs": {
+    "url": "https://github.com/strapi/strapi/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "codemirror": "^5.46.0",
+    "draft-js": "^0.10.5",
+    "immutable": "^3.8.2",
+    "invariant": "^2.2.1",
+    "lodash": "^4.17.11",
+    "pluralize": "^7.0.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-intl": "^2.8.0",
+    "react-redux": "^7.0.2",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-select": "^3.0.4",
+    "react-transition-group": "^2.5.0",
+    "reactstrap": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-immutable": "^4.0.0",
+    "reselect": "^3.0.1",
+    "showdown": "^1.9.0",
+    "strapi-helper-plugin": "3.0.0-beta.17.8",
+    "strapi-utils": "3.0.0-beta.17.8",
+    "styled-components": "^4.2.0",
+    "yup": "^0.27.0"
+  },
+  "deprecated": false,
+  "description": "A powerful UI to easily manage your data.",
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "gitHead": "cf6ecbff4f38ef4ad8718670f28b8b69d4cae01b",
+  "homepage": "https://github.com/strapi/strapi#readme",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "Strapi team",
+      "email": "hi@strapi.io",
+      "url": "http://strapi.io"
+    }
+  ],
+  "name": "strapi-plugin-content-manager",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strapi/strapi.git"
+  },
+  "scripts": {
+    "test": "jest services"
+  },
+  "strapi": {
+    "name": "Content Manager",
+    "icon": "plug",
+    "description": "content-manager.plugin.description",
+    "required": true
+  },
+  "version": "3.0.0-beta.17.8"
+}
