@@ -110,3 +110,5 @@ coverage
 exports
 .cache
 build
+
+extensions/users-permissions/config/jwt.json
