@@ -45,7 +45,10 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectListView from './selectors';
 
+import List from '../../components/List'
+
 function ListView({
+  currentEnvironment,
   count,
   data,
   emitEvent,
@@ -56,7 +59,7 @@ function ListView({
   isLoading,
   history: { push },
   match: {
-    params: { slug },
+    params: { slug, id },
   },
   onChangeBulk,
   onChangeBulkSelectall,
@@ -70,6 +73,10 @@ function ListView({
   toggleModalDelete,
   showWarningDeleteAll,
   toggleModalDeleteAll,
+  groups,
+  groupsAndModelsMainPossibleMainFields,
+  models,
+  plugins,
 }) {
   strapi.useInjectReducer({ key: 'listView', reducer, pluginId });
   strapi.useInjectSaga({ key: 'listView', saga, pluginId });
@@ -290,98 +297,18 @@ function ListView({
             />
           )}
           <Wrapper>
-            <div className="row" style={{ marginBottom: '6px' }}>
-              <div className="col-10">
-                <div className="row" style={{ marginLeft: 0, marginRight: 0 }}>
-                  {getLayoutSettingRef.current('filterable') && (
-                    <>
-                      <AddFilterCta
-                        type="button"
-                        onClick={toggleFilterPickerState}
-                      >
-                        <Img src={FilterLogo} alt="filter_logo" />
-                        <FormattedMessage
-                          id={`${pluginId}.components.AddFilterCTA.add`}
-                        />
-                      </AddFilterCta>
-                      {getSearchParams().filters.map((filter, key) => (
-                        <Filter
-                          {...filter}
-                          changeParams={handleChangeParams}
-                          filters={getSearchParams().filters}
-                          index={key}
-                          schema={get(layouts, [slug, 'schema'], {})}
-                          key={key}
-                          toggleFilterPickerState={toggleFilterPickerState}
-                          isFilterPickerOpen={isFilterPickerOpen}
-                        />
-                      ))}
-                    </>
-                  )}
-                </div>
-              </div>
-              <div className="col-2">
-                <DropDownWrapper style={{ marginBottom: '6px' }}>
-                  <ButtonDropdown
-                    isOpen={isLabelPickerOpen}
-                    toggle={toggleLabelPickerState}
-                    direction="left"
-                  >
-                    <DropdownToggle />
-                    <DropdownMenu>
-                      <FormattedMessage id="content-manager.containers.ListPage.displayedFields">
-                        {msg => (
-                          <DropdownItem
-                            onClick={() => {
-                              resetListLabels(slug);
-                            }}
-                          >
-                            <div
-                              style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                              }}
-                            >
-                              <span>{msg}</span>
-                              <FormattedMessage id="content-manager.containers.Edit.reset" />
-                            </div>
-                          </DropdownItem>
-                        )}
-                      </FormattedMessage>
-                      {getAllLabels().map(label => {
-                        return (
-                          <DropdownItem
-                            key={label.name}
-                            toggle={false}
-                            onClick={() => handleChangeListLabels(label)}
-                          >
-                            <div>
-                              <InputCheckbox
-                                onChange={() => handleChangeListLabels(label)}
-                                name={label.name}
-                                value={label.value}
-                              />
-                            </div>
-                          </DropdownItem>
-                        );
-                      })}
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </DropDownWrapper>
-              </div>
-            </div>
-            <div className="row" style={{ paddingTop: '30px' }}>
-              <div className="col-12">
-                <CustomTable
-                  data={data}
-                  headers={getTableHeaders()}
-                  isBulkable={getLayoutSettingRef.current('bulkable')}
-                  onChangeParams={handleChangeParams}
-                  slug={slug}
-                />
-                <Footer />
-              </div>
-            </div>
+            <List
+              data={data}
+              currentEnvironment={currentEnvironment}
+              emitEvent={emitEvent}
+              groups={groups}
+              groupsAndModelsMainPossibleMainFields={
+                groupsAndModelsMainPossibleMainFields
+              }
+              layouts={layouts}
+              models={models}
+              plugins={plugins}
+            />
           </Wrapper>
         </Container>
         <PopUpWarning
@@ -444,6 +371,7 @@ ListView.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       slug: PropTypes.string.isRequired,
+      id: PropTypes.string,
     }),
   }),
   onChangeBulk: PropTypes.func.isRequired,

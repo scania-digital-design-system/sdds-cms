@@ -91,7 +91,7 @@ function Main({
     },
     { path: 'ctm-configurations/groups/:name', comp: SettingViewGroup },
     { path: 'ctm-configurations/:type', comp: SettingsView },
-    { path: ':slug/:id', comp: EditView },
+    // { path: ':slug/:id', comp: EditView },
     { path: ':slug', comp: ListView },
   ].map(({ path, comp }) => (
     <Route

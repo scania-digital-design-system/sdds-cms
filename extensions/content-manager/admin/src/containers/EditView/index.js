@@ -367,7 +367,6 @@ function EditView({
       }}
       search={search}
     >
-      <BackHeader onClick={() => redirectToPreviousPage()} />
       <Container className="container-fluid">
         <form onSubmit={handleSubmit}>
           <PluginHeader
@@ -408,7 +407,7 @@ function EditView({
             title={pluginHeaderTitle}
           />
           <div className="row">
-            <div className="col-md-12 col-lg-9">
+            <div className="col-md-12">
               <MainWrapper>
                 {fields.map((fieldsRow, key) => {
                   if (fieldsRow.length === 0) {
@@ -501,7 +500,7 @@ function EditView({
                 })}
               </MainWrapper>
             </div>
-            <div className="col-md-12 col-lg-3">
+            <div className="col-md-12">
               {hasRelations && (
                 <SubWrapper
                   style={{ padding: '0 20px 1px', marginBottom: '26px' }}
@@ -609,8 +608,8 @@ EditView.propTypes = {
   }),
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
+      id: PropTypes.string,
+      slug: PropTypes.string,
     }),
   }),
   plugins: PropTypes.object,

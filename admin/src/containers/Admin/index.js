@@ -21,6 +21,7 @@ import {
 import { SHOW_TUTORIALS } from '../../config';
 
 import Header from '../../components/Header/index';
+import Plugins from '../../components/Plugins';
 import Logout from '../../components/Logout';
 import NavTopRightWrapper from '../../components/NavTopRightWrapper';
 import ComingSoonPage from '../ComingSoonPage';
@@ -152,6 +153,7 @@ export class Admin extends React.Component {
           <LeftMenu version={strapiVersion} plugins={plugins} />
           <NavTopRightWrapper>
             {/* Injection zone not ready yet */}
+            <Plugins plugins={plugins} />
             <Logout />
             <LocaleToggle isLogged />
           </NavTopRightWrapper>
