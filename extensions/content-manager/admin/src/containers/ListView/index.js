@@ -93,8 +93,7 @@ function ListView({
     (updatedParams = {}) => {
       return {
         _limit:
-          getQueryParameters(search, '_limit') ||
-          getLayoutSettingRef.current('pageSize'),
+          getQueryParameters(search, '_limit') || 20,
         _page: getQueryParameters(search, '_page') || 1,
         _q: getQueryParameters(search, '_q') || '',
         _sort:
@@ -291,6 +290,7 @@ function ListView({
               layouts={layouts}
               models={models}
               plugins={plugins}
+              searchParams={getSearchParams()}
             />
             
           </Wrapper>

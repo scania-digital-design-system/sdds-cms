@@ -94,7 +94,7 @@ export function onChange({ target: { name, value } }) {
   return {
     type: ON_CHANGE,
     keys: ['modifiedData', ...name.split('.')],
-    value: name === 'settings.pageSize' ? parseInt(value, 10) : value,
+    value: name === 'settings.pageSize' ? parseInt(value, 20) : value,
   };
 }
 

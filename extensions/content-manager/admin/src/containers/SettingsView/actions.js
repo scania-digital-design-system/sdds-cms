@@ -24,7 +24,7 @@ export function onChange({ target: { name, value } }) {
   return {
     type: ON_CHANGE,
     name,
-    value: name === 'pageSize' ? parseInt(value, 10) : value,
+    value: name === 'pageSize' ? parseInt(value, 20) : value,
   };
 }
 

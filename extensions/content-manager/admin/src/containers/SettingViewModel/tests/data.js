@@ -68,7 +68,7 @@ const data = {
     searchable: true,
     filterable: true,
     bulkable: true,
-    pageSize: 10,
+    pageSize: 20,
     mainField: 'id',
     defaultSortBy: 'id',
     defaultSortOrder: 'ASC',
