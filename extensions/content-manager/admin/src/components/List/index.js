@@ -7,6 +7,7 @@ import { PluginHeader } from 'strapi-helper-plugin';
 import pluginId from '../../pluginId';
 import EditView from '../../containers/EditView';
 import { ListWrapper } from './components';
+import Footer from './Footer'
 
 function List({
   count,
@@ -84,7 +85,9 @@ function List({
             </li>
           )}
         </ul>
+        <Footer />
       </div>
+
       <div className="col-md-6">
         <Switch>
           <Route

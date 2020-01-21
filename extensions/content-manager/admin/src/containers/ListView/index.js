@@ -292,7 +292,7 @@ function ListView({
               models={models}
               plugins={plugins}
             />
-            <Footer />
+            
           </Wrapper>
         </Container>
         <PopUpWarning
