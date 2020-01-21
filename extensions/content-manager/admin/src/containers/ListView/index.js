@@ -270,24 +270,6 @@ function ListView({
           onSubmit={handleSubmit}
         />
         <Container className="container-fluid">
-          {!isFilterPickerOpen && (
-            <PluginHeader
-              actions={pluginHeaderActions}
-              description={{
-                id:
-                  count > 1
-                    ? `${pluginId}.containers.List.pluginHeaderDescription`
-                    : `${pluginId}.containers.List.pluginHeaderDescription.singular`,
-                values: {
-                  label: count,
-                },
-              }}
-              title={{
-                id: slug || 'Content Manager',
-              }}
-              withDescriptionAnim={isLoading}
-            />
-          )}
           {getLayoutSettingRef.current('searchable') && (
             <Search
               changeParams={handleChangeParams}
@@ -298,6 +280,7 @@ function ListView({
           )}
           <Wrapper>
             <List
+              count={count}
               data={data}
               currentEnvironment={currentEnvironment}
               emitEvent={emitEvent}
@@ -309,6 +292,7 @@ function ListView({
               models={models}
               plugins={plugins}
             />
+            <Footer />
           </Wrapper>
         </Container>
         <PopUpWarning

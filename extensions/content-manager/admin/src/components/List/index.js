@@ -1,22 +1,29 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Switch, Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import { capitalize, get, sortBy } from 'lodash';
+import { PluginHeader } from 'strapi-helper-plugin';
 import pluginId from '../../pluginId';
 import EditView from '../../containers/EditView';
+import { ListWrapper } from './components';
 
 function List({
+  count,
   currentEnvironment,
   data,
   emitEvent,
+  groups,
+  groupsAndModelsMainPossibleMainFields,
+  history: { push },
+  isLoading,
+  layouts,
+  location: { pathname, search },
   match: {
     params: { slug },
   },
-  groups,
-  groupsAndModelsMainPossibleMainFields,
   models,
   plugins,
-  layouts
 }) {
 
   const renderRoute = (props) => (
@@ -34,18 +41,50 @@ function List({
     />
   );
 
+  const getPath = ( path ) => {
+    const fullPath = path.split('/');
+    const ends = fullPath.pop();
+    if(ends !== slug) {
+      return fullPath.join('/');
+    } else {
+      return path;
+    }
+    
+  }
+
   return (
-    <div className="row">
-      <ul className="col-md-3">
-        {data.map(row =>
-          <li key={row.id}>
-            <NavLink 
-              to={`/plugins/${pluginId}/${slug}/${row.id}`}>
-                { row.title || row.name || row.url || row.username }
-            </NavLink>
-          </li>
-        )}
-      </ul>
+    <ListWrapper className="row">
+      <div className="col-md-3">
+        <div className="title">
+          <h1>
+            {slug || 'Content Manager'}          
+            <br/>
+            <span className="info">
+              { count } 
+              {
+                count > 1
+                ? ` entries found`
+                : ` entry found `
+              }
+            </span>
+          </h1>
+          <NavLink 
+            to={`${getPath(pathname)}/create`}
+            className="addNew">
+          </NavLink>
+        </div>
+        
+        <ul>
+          {data.map(row =>
+            <li key={row.id}>
+              <NavLink 
+                to={`/plugins/${pluginId}/${slug}/${row.id}`}>
+                  { row.title || row.name || row.url || row.username }
+              </NavLink>
+            </li>
+          )}
+        </ul>
+      </div>
       <div className="col-md-6">
         <Switch>
           <Route
@@ -54,7 +93,7 @@ function List({
           )} 
         </Switch>
       </div>
-    </div>
+    </ListWrapper>
   );
 }
 

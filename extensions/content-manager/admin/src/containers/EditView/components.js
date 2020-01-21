@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const SubWrapper = styled.div`
-  background: #ffffff;
+  // background: #ffffff;
   border-radius: 2px;
-  box-shadow: 0 2px 4px #e3e9f3;
+  // box-shadow: 0 2px 4px #e3e9f3;
 `;
 
 const MainWrapper = styled(SubWrapper)`
@@ -15,9 +15,9 @@ const MainWrapper = styled(SubWrapper)`
 `;
 
 const LinkWrapper = styled(SubWrapper)`
-  background: #ffffff;
+  // background: #ffffff;
   border-radius: 2px;
-  box-shadow: 0 2px 4px #e3e9f3;
+  // box-shadow: 0 2px 4px #e3e9f3;
   ul {
     list-style: none;
     padding: 0;

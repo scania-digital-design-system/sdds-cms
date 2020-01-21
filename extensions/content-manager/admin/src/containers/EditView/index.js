@@ -367,7 +367,7 @@ function EditView({
       }}
       search={search}
     >
-      <Container className="container-fluid">
+      <Container>
         <form onSubmit={handleSubmit}>
           <PluginHeader
             actions={[

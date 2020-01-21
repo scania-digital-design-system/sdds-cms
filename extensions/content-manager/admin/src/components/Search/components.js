@@ -5,7 +5,6 @@ import Search from '../../assets/images/icon-search.svg';
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
-  left: 18px;
   display: flex;
   align-items: center;
   overflow: hidden;
