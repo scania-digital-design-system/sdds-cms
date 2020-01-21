@@ -41,11 +41,7 @@ const Li = styled.li`
 
   .link {
     position: relative;
-    padding-top: 0.8rem;
-    padding-bottom: 0.2rem;
-    padding-left: 1.6rem;
-    min-height: 3.6rem;
-    border-left: 0.3rem solid transparent;
+    padding: 0.8rem 2.2rem;
     cursor: pointer;
     color: ${props => props.theme.main.colors.leftMenu['link-color']};
     text-decoration: none;
@@ -55,8 +51,6 @@ const Li = styled.li`
     &:hover {
       color: ${props => props.theme.main.colors.white};
       background: ${props => props.theme.main.colors.leftMenu['link-hover']};
-
-      border-left: 0.3rem solid ${props => props.theme.main.colors.strapi.blue};
       text-decoration: none;
     }
 
@@ -64,29 +58,17 @@ const Li = styled.li`
       color: ${props => props.theme.main.colors.white};
       text-decoration: none;
     }
-
-    &:visited {
-      color: ${props => props.theme.main.colors.leftMenu['link-color']};
-    }
-    span {
-      display: inline-block;
-      width: 100%;
-      padding-right: 1rem;
-      padding-left: 2.6rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
   }
 
   .linkActive {
-    color: $white !important;
-    border-left: 0.3rem solid ${props => props.theme.main.colors.strapi.blue};
+    color: ${props => props.theme.main.colors.white};
+    // border-left: 0.3rem solid ${props => props.theme.main.colors.strapi.blue};
+    background: ${props => props.theme.main.colors.leftMenu['link-hover']};
   }
 
   .linkIcon {
     position: absolute;
-    top: calc(50% - 0.9rem + 0.5rem);
+    top: calc(50% - 1.2rem + 0.5rem);
     left: 1.6rem;
     margin-right: 1.2rem;
     font-size: 1.2rem;

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Logo from '../../assets/images/logo-strapi.png';
+import Logo from '../../assets/images/scania-logo.svg';
 
 const Wrapper = styled.div`
   background: ${props => props.theme.main.colors.leftMenu['link-hover']};
   height: ${props => props.theme.main.sizes.header.height};
-  background: linear-gradient(100deg, #1c5de7, #1c91e7);
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgba(40,42,49,0.16);
 
   .leftMenuHeaderLink {
     &:hover {

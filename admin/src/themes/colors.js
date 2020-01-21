@@ -20,16 +20,15 @@ const colors = {
     'background-alpha': 'rgba(14, 22, 34, 0.02)',
   },
   leftMenu: {
-    'link-hover': '#1c2431',
+    'link-hover': '#033a6a',
+    'link-color-hover': '#fff',
     'link-color': '#919bae',
     'title-color': '#5b626f',
   },
   strapi: {
     'gray-light': '#eff3f6',
-    gray: '#535f76',
-    'blue-darker': '#18202e',
-    'blue-dark': '#151c2e',
-    blue: '#0097f7',
+    gray: '#53565a',
+    blue: '#033a6a',
   },
 };
 

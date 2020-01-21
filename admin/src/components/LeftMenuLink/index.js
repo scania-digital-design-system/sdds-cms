@@ -38,10 +38,9 @@ function LeftMenuLink(props) {
       values={{
         label: `${props.label}`,
       }}
-      className="linkLabel"
     />
   ) : (
-    <span className="linkLabel">{props.label}</span>
+    <span>{props.label}</span>
   );
 
   // Icon.
@@ -55,7 +54,6 @@ function LeftMenuLink(props) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      {icon}
       {content}
     </a>
   ) : (
@@ -66,7 +64,6 @@ function LeftMenuLink(props) {
         search: props.source ? `?source=${props.source}` : '',
       }}
     >
-      {icon}
       {content}
     </Link>
   );

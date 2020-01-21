@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
-  padding-top: 0.7rem;
+  padding-top: 20px;
   position: absolute;
   top: 60px;
   right: 0;
@@ -12,23 +12,43 @@ const Wrapper = styled.div`
   // height: calc(100vh - (6rem + 10.2rem));
   height: calc(100vh - 60px);
   box-sizing: border-box;
+  box-shadow: 0 1px 2px 0 rgba(40,42,49,0.16);
 
   .title {
-    padding-left: 2rem;
-    padding-right: 1.6rem;
-    padding-top: 1rem;
-    margin-bottom: 0.8rem;
-    color: ${props => props.theme.main.colors.leftMenu['title-color']};
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    letter-spacing: 0.1rem;
-    font-weight: 800;
+    margin-bottom: 45px;
+    font-size: 2.4rem;
+    font-weight: 600;
+    padding-left: 20px;
+    // color: ${props => props.theme.main.colors.leftMenu['title-color']};
   }
 
   .list {
     list-style: none;
     padding: 0;
     margin-bottom: 2rem;
+  }
+
+  .addWrapper {
+    text-align: right;
+  }
+
+  .addNew {
+    display:inline-block;
+    width:25px;
+    height:25px;
+    margin-right:20px;
+
+    &:after, &:before {
+      content:"";
+      position:absolute;
+      display: block;
+      width: 1px;
+      border-right: 1px solid #aaa;
+      height: 25px;
+    }
+    &:before {
+      transform: rotate(90deg);
+    }
   }
 
   .noPluginsInstalled {

@@ -44,7 +44,16 @@ function LeftMenuLinkContainer({ plugins, ...rest }) {
 
     return (
       <div key={j}>
-        <p className="title">{pluginsSections[current].name}</p>
+        <div className="row">
+          <div className="col-md-8">
+            <h1 className="title">{pluginsSections[current].name}</h1>
+          </div>
+          {/* TODO: Do not use modal and show create new content type in a new page */}
+          <div className="col-md-4 addWrapper">
+            <a className="addNew" href={`/plugins/content-type-builder/models/content?modalType=model&settingType=base&actionType=create`}></a>
+          </div>
+        </div>
+        
         <ul className="list">
           {sortBy(contentTypes, 'label').map((link, i) => (
             <LeftMenuLink

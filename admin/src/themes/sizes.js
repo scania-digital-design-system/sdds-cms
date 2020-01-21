@@ -4,7 +4,7 @@ const sizes = {
   },
   leftMenu: {
     height: '6rem',
-    width: '24rem',
+    width: '30rem',
   },
 };
 
