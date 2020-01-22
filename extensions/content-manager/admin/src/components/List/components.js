@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 const ListWrapper = styled.div`
-  > div {
-    padding-top: 20px;
-  }
-
   ul { 
     list-style-type: none;
     padding-left: 0;

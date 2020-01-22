@@ -70,7 +70,7 @@ function List({
             </span>
           </h1>
           <NavLink 
-            to={`${getPath(pathname)}/create`}
+            to={`${getPath(pathname)}/create${search}`}
             className="addNew">
           </NavLink>
         </div>
@@ -79,7 +79,7 @@ function List({
           {data.map(row =>
             <li key={row.id}>
               <NavLink 
-                to={`/plugins/${pluginId}/${slug}/${row.id}`}>
+                to={`/plugins/${pluginId}/${slug}/${row.id}${search}`}>
                   { row.title || row.name || row.url || row.username }
               </NavLink>
             </li>

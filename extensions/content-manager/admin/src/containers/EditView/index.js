@@ -367,7 +367,7 @@ function EditView({
       }}
       search={search}
     >
-      <Container>
+      <>
         <form onSubmit={handleSubmit}>
           <PluginHeader
             actions={[
@@ -590,7 +590,7 @@ function EditView({
           popUpWarningType="danger"
           onConfirm={handleConfirmDelete}
         />
-      </Container>
+      </>
     </EditViewProvider>
   );
 }
