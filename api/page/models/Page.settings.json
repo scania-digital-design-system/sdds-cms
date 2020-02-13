@@ -18,13 +18,13 @@
       "required": true,
       "type": "string"
     },
-    "pages": {
+    "submenus": {
       "collection": "page",
       "via": "parent"
     },
     "parent": {
       "model": "page",
-      "via": "pages"
+      "via": "submenus"
     },
     "content": {
       "model": "content"

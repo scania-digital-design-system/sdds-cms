@@ -18,7 +18,9 @@
       "type": "string"
     },
     "sections": {
-      "collection": "section"
+      "collection": "section",
+      "via": "templates",
+      "dominant": true
     }
   }
 }
