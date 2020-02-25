@@ -1,35 +1,29 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState, lazy } from 'react';
+import { Switch, Route, useRouteMatch, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { capitalize, get, sortBy } from 'lodash';
 import { FormattedMessage } from 'react-intl';
+import { Header } from '@buffetjs/custom';
 import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from 'reactstrap';
-import {
-  PluginHeader,
   PopUpWarning,
   getQueryParameters,
+  useGlobalContext,
 } from 'strapi-helper-plugin';
+
 import pluginId from '../../pluginId';
-import { ListViewProvider } from '../../contexts/ListView';
-import FilterLogo from '../../assets/images/icon_filter.png';
-import Container from '../../components/Container';
-import CustomTable from '../../components/CustomTable';
+import List from '../../components/List';
 import FilterPicker from '../../components/FilterPicker';
-import InputCheckbox from '../../components/InputCheckbox';
-import Search from '../../components/Search';
+import Container from '../../components/Container';
 import {
   generateFiltersFromSearch,
   generateSearchFromFilters,
 } from '../../utils/search';
+import ListViewProvider from '../ListViewProvider';
+import EditViewProvider from '../EditViewDataManagerProvider';
 import { onChangeListLabels, resetListLabels } from '../Main/actions';
-import { AddFilterCta, DropDownWrapper, Img, Wrapper } from './components';
-import Filter from './Filter';
+import { Wrapper } from './components';
 import Footer from './Footer';
 import {
   getData,
@@ -45,10 +39,12 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectListView from './selectors';
 
-import List from '../../components/List'
+const EditView = lazy(() => import('../EditView'));
+
+/* eslint-disable react/no-array-index-key */
 
 function ListView({
-  currentEnvironment,
+  components,
   count,
   data,
   emitEvent,
@@ -56,11 +52,7 @@ function ListView({
   location: { pathname, search },
   getData,
   layouts,
-  isLoading,
   history: { push },
-  match: {
-    params: { slug, id },
-  },
   onChangeBulk,
   onChangeBulkSelectall,
   onChangeListLabels,
@@ -70,24 +62,22 @@ function ListView({
   resetProps,
   shouldRefetchData,
   showWarningDelete,
+  slug,
   toggleModalDelete,
   showWarningDeleteAll,
   toggleModalDeleteAll,
-  groups,
-  groupsAndModelsMainPossibleMainFields,
-  models,
-  plugins,
 }) {
   strapi.useInjectReducer({ key: 'listView', reducer, pluginId });
   strapi.useInjectSaga({ key: 'listView', saga, pluginId });
-
+  // const { formatMessage } = useGlobalContext();
   const getLayoutSettingRef = useRef();
   const [isLabelPickerOpen, setLabelPickerState] = useState(false);
   const [isFilterPickerOpen, setFilterPickerState] = useState(false);
   const [idToDelete, setIdToDelete] = useState(null);
+  const contentTypePath = [slug, 'contentType'];
 
   getLayoutSettingRef.current = settingName =>
-    get(layouts, [slug, 'settings', settingName], '');
+    get(layouts, [...contentTypePath, 'settings', settingName], '');
 
   const getSearchParams = useCallback(
     (updatedParams = {}) => {
@@ -101,7 +91,6 @@ function ListView({
           `${getLayoutSettingRef.current(
             'defaultSortBy'
           )}:${getLayoutSettingRef.current('defaultSortOrder')}`,
-        source: getQueryParameters(search, 'source'),
         filters: generateFiltersFromSearch(search),
         ...updatedParams,
       };
@@ -115,40 +104,37 @@ function ListView({
       resetProps();
       setFilterPickerState(false);
     };
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, shouldRefetchData]);
 
   const toggleLabelPickerState = () => {
     if (!isLabelPickerOpen) {
-      emitEvent('willChangeDisplayedFields');
+      emitEvent('willChangeListFieldsSettings');
     }
 
     setLabelPickerState(prevState => !prevState);
   };
   const toggleFilterPickerState = () => {
+    if (!isFilterPickerOpen) {
+      emitEvent('willFilterEntries');
+    }
+
     setFilterPickerState(prevState => !prevState);
   };
 
   // Helpers
   const getMetaDatas = (path = []) =>
-    get(layouts, [slug, 'metadatas', ...path], {});
-  const getListLayout = () => get(layouts, [slug, 'layouts', 'list'], []);
-  const getAllLabels = () => {
-    return sortBy(
-      Object.keys(getMetaDatas())
-        .filter(
-          key =>
-            !['json', 'group', 'relation', 'richtext'].includes(
-              get(layouts, [slug, 'schema', 'attributes', key, 'type'], '')
-            )
-        )
-        .map(label => ({
-          name: label,
-          value: getListLayout().includes(label),
-        })),
-      ['label', 'name']
-    );
+    get(layouts, [...contentTypePath, 'metadatas', ...path], {});
+
+  const getListLayout = () =>
+    get(layouts, [...contentTypePath, 'layouts', 'list'], []);
+
+  const getListSchema = () => get(layouts, [...contentTypePath, 'schema'], {});
+
+  const getName = () => {
+    return get(getListSchema(), ['info', 'name'], '');
   };
+
   const getFirstSortableElement = (name = '') => {
     return get(
       getListLayout().filter(h => {
@@ -157,35 +143,6 @@ function ListView({
       ['0'],
       'id'
     );
-  };
-  const getTableHeaders = () => {
-    return getListLayout().map(label => {
-      return { ...getMetaDatas([label, 'list']), name: label };
-    });
-  };
-  const handleChangeListLabels = ({ name, value }) => {
-    const currentSort = getSearchParams()._sort;
-
-    if (value && getListLayout().length === 1) {
-      strapi.notification.error(
-        'content-manager.notification.error.displayedFields'
-      );
-
-      return;
-    }
-
-    if (currentSort.split(':')[0] === name && value) {
-      emitEvent('didChangeDisplayedFields');
-      handleChangeParams({
-        target: {
-          name: '_sort',
-          value: `${getFirstSortableElement(name)}:ASC`,
-        },
-      });
-    }
-    onChangeListLabels({
-      target: { name: `${slug}.${name}`, value: !value },
-    });
   };
 
   const handleChangeParams = ({ target: { name, value } }) => {
@@ -225,23 +182,36 @@ function ListView({
       type: 'submit',
     },
   ];
-  const pluginHeaderActions = [
-    {
-      id: 'addEntry',
-      label: 'content-manager.containers.List.addAnEntry',
-      labelValues: {
-        entity: capitalize(slug) || 'Content Manager',
-      },
-      kind: 'primaryAddShape',
-      onClick: () => {
-        emitEvent('willCreateEntry');
-        push({
-          pathname: `${pathname}/create`,
-          search: `redirectUrl=${pathname}${search}`,
-        });
-      },
+
+  const headerProps = {
+    title: {
+      label: getName() || 'Content Manager',
     },
-  ];
+    content:  count > 1
+              ? `${count} entries found`
+              : `${count} entry found`
+  };
+
+  const { url } = useRouteMatch();
+
+  const renderRoute = (props) => (
+    <EditView
+      slug={slug}
+      layouts={layouts}
+      components={components}
+      {...props}
+    />
+  );
+
+  const createLink = (path) => {
+    let newPath = path.split('/');
+    newPath.pop();
+    return newPath.join('/');
+  }
+
+  const getPathId = (path) => {
+    return path.substring(path.lastIndexOf('/') + 1)
+  }
 
   return (
     <>
@@ -251,12 +221,13 @@ function ListView({
         entriesToDelete={entriesToDelete}
         emitEvent={emitEvent}
         firstSortableElement={getFirstSortableElement()}
+        label={getName()}
         onChangeBulk={onChangeBulk}
         onChangeBulkSelectall={onChangeBulkSelectall}
         onChangeParams={handleChangeParams}
         onClickDelete={handleClickDelete}
         onDeleteSeveralData={onDeleteSeveralData}
-        schema={get(layouts, [slug, 'schema'], {})}
+        schema={getListSchema()}
         searchParams={getSearchParams()}
         slug={slug}
         toggleModalDeleteAll={toggleModalDeleteAll}
@@ -264,37 +235,45 @@ function ListView({
         <FilterPicker
           actions={filterPickerActions}
           isOpen={isFilterPickerOpen}
-          name={slug}
+          name={getName()}
           toggleFilterPickerState={toggleFilterPickerState}
           onSubmit={handleSubmit}
         />
-        <Container className="container-fluid">
-          {getLayoutSettingRef.current('searchable') && (
-            <Search
-              changeParams={handleChangeParams}
-              initValue={getQueryParameters(search, '_q') || ''}
-              model={slug}
-              value={getQueryParameters(search, '_q') || ''}
-            />
-          )}
+        <div className="container-fluid">
           <Wrapper>
-            <List
-              count={count}
-              data={data}
-              currentEnvironment={currentEnvironment}
-              emitEvent={emitEvent}
-              groups={groups}
-              groupsAndModelsMainPossibleMainFields={
-                groupsAndModelsMainPossibleMainFields
-              }
-              layouts={layouts}
-              models={models}
-              plugins={plugins}
-              searchParams={getSearchParams()}
-            />
-            
+            <div className="row">
+              <div className="col-3">
+                <Container>
+                  {!isFilterPickerOpen && <Header {...headerProps} />}
+                  <div className="addWrapper">
+                    <a className="addNew" onClick={() => {
+                      emitEvent('willCreateEntry');
+                      push({
+                        pathname: `${/\d/.test(getPathId(pathname)) ? createLink(pathname) : pathname}/create`,
+                        search: search.indexOf('redirectUrl') !== -1 ? '' : `redirectUrl=${pathname}${search}`,
+                      });
+                    }}></a>
+                  </div>
+                  <List
+                    data={data}
+                    isBulkable={getLayoutSettingRef.current('bulkable')}
+                    onChangeParams={handleChangeParams}
+                  />
+                  <Footer />
+                </Container>
+              </div>
+              <div className="col-9">
+                <Switch>
+                  <Route
+                    key=':id'
+                    path={`${url}/:id`}
+                    render={props => renderRoute(props)}
+                  />
+                </Switch>
+              </div>
+            </div>
           </Wrapper>
-        </Container>
+        </div>
         <PopUpWarning
           isOpen={showWarningDelete}
           toggleModal={toggleModalDelete}
@@ -306,7 +285,7 @@ function ListView({
           }}
           popUpWarningType="danger"
           onConfirm={() => {
-            onDeleteData(idToDelete, slug, getSearchParams().source, emitEvent);
+            onDeleteData(idToDelete, slug, emitEvent);
           }}
         />
         <PopUpWarning
@@ -322,11 +301,7 @@ function ListView({
           }}
           popUpWarningType="danger"
           onConfirm={() => {
-            onDeleteSeveralData(
-              entriesToDelete,
-              slug,
-              getSearchParams().source
-            );
+            onDeleteSeveralData(entriesToDelete, slug);
           }}
         />
       </ListViewProvider>
@@ -346,18 +321,12 @@ ListView.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
     search: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
+  models: PropTypes.array.isRequired,
   getData: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
-  }),
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-      id: PropTypes.string,
-    }),
-  }),
+  }).isRequired,
   onChangeBulk: PropTypes.func.isRequired,
   onChangeBulkSelectall: PropTypes.func.isRequired,
   onChangeListLabels: PropTypes.func.isRequired,
@@ -368,6 +337,7 @@ ListView.propTypes = {
   shouldRefetchData: PropTypes.bool.isRequired,
   showWarningDelete: PropTypes.bool.isRequired,
   showWarningDeleteAll: PropTypes.bool.isRequired,
+  slug: PropTypes.string.isRequired,
   toggleModalDelete: PropTypes.func.isRequired,
   toggleModalDeleteAll: PropTypes.func.isRequired,
 };

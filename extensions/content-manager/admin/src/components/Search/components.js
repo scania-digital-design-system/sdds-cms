@@ -1,31 +1,29 @@
 import styled from 'styled-components';
-import Cross from '../../assets/images/icon-cross.svg';
-import Search from '../../assets/images/icon-search.svg';
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: relative;
   top: 0;
   display: flex;
   align-items: center;
   overflow: hidden;
-  min-width: 44rem;
-  height: 6rem;
+  height: 38px;
   padding-right: 20px;
   background-color: #ffffff;
-  border-right: 1px solid #f3f4f4;
+  border: 1px solid #C8C9C7;
+  border-radius: 3px;
   z-index: 1050;
   color: #9ea7b8;
   line-height: 6rem;
   letter-spacing: 0;
+  margin-bottom:30px;
 
-  &:before {
-    content: '';
-    width: 16px;
-    height: 16px;
-    background-image: url(${Search});
+  > div:first-child {
+    margin-left:10px;
     margin-right: 10px;
-    color: #b3b5b9;
-    vertical-align: middle;
+    > svg {
+      color: #b3b5b9;
+      vertical-align: middle;
+    }
   }
 
   input {
@@ -39,7 +37,7 @@ const Wrapper = styled.div`
     }
   }
 
-  > div:first-child {
+  > div:nth-child(2) {
     display: flex;
     flex: 2;
   }
@@ -62,7 +60,7 @@ const Infos = styled.div`
   font-weight: 400;
   line-height: 20px;
   -webkit-font-smoothing: antialiased;
-  > img {
+  > svg {
     position: absolute;
     top: 1px;
     margin: auto;
@@ -76,19 +74,10 @@ const Clear = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 13px;
   height: 13px;
   margin: 25px auto 0;
   border-radius: 50%;
   cursor: pointer;
-
-  &:after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    margin: auto;
-    background-image: url(${Cross});
-  }
 `;
 
 export { Clear, Wrapper, Infos };

@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators, compose } from 'redux';
 import { Switch, Route } from 'react-router-dom';
+import { injectIntl } from 'react-intl';
 import { isEmpty } from 'lodash';
 // Components from strapi-helper-plugin
 import {
@@ -24,7 +25,6 @@ import Header from '../../components/Header/index';
 import Plugins from '../../components/Plugins';
 import Logout from '../../components/Logout';
 import NavTopRightWrapper from '../../components/NavTopRightWrapper';
-import ComingSoonPage from '../ComingSoonPage';
 import LeftMenu from '../LeftMenu';
 import ListPluginsPage from '../ListPluginsPage';
 import LocaleToggle from '../LocaleToggle';
@@ -32,6 +32,7 @@ import HomePage from '../HomePage';
 import Marketplace from '../Marketplace';
 import NotFoundPage from '../NotFoundPage';
 import Onboarding from '../Onboarding';
+import SettingsPage from '../SettingsPage';
 import PluginDispatcher from '../PluginDispatcher';
 import {
   disableGlobalOverlayBlocker,
@@ -51,6 +52,14 @@ import Content from './Content';
 
 export class Admin extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
+
+  helpers = {
+    updatePlugin: this.props.updatePlugin,
+  };
+
+  componentDidMount() {
+    this.props.emitEvent('didAccessAuthenticatedAdministration');
+  }
 
   shouldComponentUpdate(prevProps) {
     return !isEmpty(difference(prevProps, this.props));
@@ -80,10 +89,6 @@ export class Admin extends React.Component {
     );
   };
 
-  helpers = {
-    updatePlugin: this.props.updatePlugin,
-  };
-
   /**
    * Display the app loader until the app is ready
    * @returns {Boolean}
@@ -109,8 +114,6 @@ export class Admin extends React.Component {
     }, []);
   };
 
-  renderMarketPlace = props => <Marketplace {...props} {...this.props} />;
-
   renderPluginDispatcher = props => {
     // NOTE: Send the needed props instead of everything...
 
@@ -133,10 +136,10 @@ export class Admin extends React.Component {
     // We need the admin data in order to make the initializers work
     if (this.showLoader()) {
       return (
-        <React.Fragment>
+        <>
           {this.renderInitializers()}
           <LoadingIndicatorPage />
-        </React.Fragment>
+        </>
       );
     }
 
@@ -146,6 +149,7 @@ export class Admin extends React.Component {
         currentEnvironment={this.props.global.currentEnvironment}
         disableGlobalOverlayBlocker={this.props.disableGlobalOverlayBlocker}
         enableGlobalOverlayBlocker={this.props.enableGlobalOverlayBlocker}
+        formatMessage={this.props.intl.formatMessage}
         plugins={this.props.global.plugins}
         updatePlugin={this.props.updatePlugin}
       >
@@ -170,7 +174,6 @@ export class Admin extends React.Component {
                   path="/plugins/:pluginId"
                   render={this.renderPluginDispatcher}
                 />
-                <Route path="/plugins" component={ComingSoonPage} />
                 <Route
                   path="/list-plugins"
                   render={props => this.renderRoute(props, ListPluginsPage)}
@@ -178,10 +181,12 @@ export class Admin extends React.Component {
                 />
                 <Route
                   path="/marketplace"
-                  render={this.renderMarketPlace}
-                  exact
+                  render={props => this.renderRoute(props, Marketplace)}
                 />
-                <Route path="/configuration" component={ComingSoonPage} exact />
+                <Route
+                  path="/settings"
+                  render={props => this.renderRoute(props, SettingsPage)}
+                />
                 <Route key="7" path="" component={NotFoundPage} />
                 <Route key="8" path="404" component={NotFoundPage} />
               </Switch>
@@ -199,6 +204,12 @@ export class Admin extends React.Component {
   }
 }
 
+Admin.defaultProps = {
+  intl: {
+    formatMessage: () => {},
+  },
+};
+
 Admin.propTypes = {
   admin: PropTypes.shape({
     appError: PropTypes.bool,
@@ -214,6 +225,9 @@ Admin.propTypes = {
     showGlobalAppBlocker: PropTypes.bool,
     strapiVersion: PropTypes.string,
   }).isRequired,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }),
   location: PropTypes.object.isRequired,
   setAppError: PropTypes.func.isRequired,
   updatePlugin: PropTypes.func.isRequired,
@@ -245,6 +259,7 @@ const withReducer = injectReducer({ key: 'admin', reducer });
 const withSaga = injectSaga({ key: 'admin', saga });
 
 export default compose(
+  injectIntl,
   withReducer,
   withSaga,
   withConnect

@@ -1,26 +1,19 @@
 {
-  "connection": "default",
-  "collectionName": "templates",
   "info": {
-    "name": "template",
-    "description": "Template listing"
+    "name": "template"
   },
   "options": {
     "increments": true,
-    "timestamps": [
-      "created_at",
-      "updated_at"
-    ],
-    "comment": ""
+    "timestamps": true
   },
   "attributes": {
     "title": {
       "type": "string"
     },
-    "sections": {
-      "collection": "section",
-      "via": "templates",
-      "dominant": true
+    "text": {
+      "type": "richtext"
     }
-  }
+  },
+  "connection": "default",
+  "collectionName": "templates"
 }

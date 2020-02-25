@@ -1,102 +1,136 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, Switch, Route } from 'react-router';
+import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { capitalize, get, sortBy } from 'lodash';
-import { PluginHeader } from 'strapi-helper-plugin';
+import { FormattedMessage } from 'react-intl';
+import { upperFirst } from 'lodash';
 import pluginId from '../../pluginId';
-import EditView from '../../containers/EditView';
-import { ListWrapper } from './components';
-import Footer from './Footer'
+import useListView from '../../hooks/useListView';
+import { Wrapper, Search } from './components';
+import SearchIcon from '../../icons/Search';
+import reducer, { initialState } from '../../containers/EditViewDataManagerProvider/reducer';
+import mainReducer, { initialState as mainInState } from '../../containers/Main/reducer';
 
 function List({
-  count,
-  currentEnvironment,
   data,
-  emitEvent,
-  groups,
-  groupsAndModelsMainPossibleMainFields,
-  history: { push },
-  isLoading,
-  layouts,
-  location: { pathname, search },
-  match: {
-    params: { slug },
+  history: {
+    location: { pathname, search },
+    push,
   },
-  models,
-  plugins,
+  isBulkable,
 }) {
+  const {
+    emitEvent,
+    entriesToDelete,
+    label,
+    searchParams: { filters, _q },
+    slug,
+  } = useListView();
 
-  const renderRoute = (props) => (
-    <EditView
-      currentEnvironment={currentEnvironment}
-      emitEvent={emitEvent}
-      groups={groups}
-      groupsAndModelsMainPossibleMainFields={
-        groupsAndModelsMainPossibleMainFields
-      }
-      layouts={layouts}
-      models={models}
-      plugins={plugins}
-      {...props}
-    />
-  );
+  const [reducerState, dispatch] = useReducer(reducer, initialState);
+  const [mainRedState, mainRedDispatch] = useReducer(mainReducer, mainInState);
 
-  const getPath = ( path ) => {
-    const fullPath = path.split('/');
-    const ends = fullPath.pop();
-    if(ends !== slug) {
-      return fullPath.join('/');
-    } else {
-      return path;
-    }
-    
+  const [filtered, setFiltered] = useState(data);
+  const [emptyMsg, setEmptyMsg] = useState('withoutFilter');
+
+  const redirectUrl = `redirectUrl=${pathname}`;
+
+  const handleGoTo = id => {
+    emitEvent('willEditEntryFromList');
+    push({
+      pathname: `/plugins/${pluginId}/${slug}/${id}`,
+      search: redirectUrl,
+    });
+  };
+
+  const values = { contentType: upperFirst(label), search: _q };
+
+  const {
+    submitSuccess
+  } = reducerState.toJS();
+
+  const {
+    saveSuccess
+  } = mainRedState.toJS();
+
+  console.log(submitSuccess)
+  console.log(saveSuccess)
+
+  const activePath = (id) => {
+    const pathID = pathname.substring(pathname.lastIndexOf('/') + 1);
+    return parseInt(pathID) === id ? true : false;
   }
+  
+  useEffect(()=>{
+    setFiltered(data);
+  }, [data]);
+
+  const handleChange = (e) => {
+    let currentList = [];
+    let newList = [];
+		
+    if (e.target.value !== "") {
+      currentList = data;
+      setEmptyMsg('withFilters');
+
+      newList = currentList.filter(item => {
+        // Convert to lowercase to search without match case
+        const listItem = item.title.toLowerCase();
+        const filter = e.target.value.toLowerCase();
+        return listItem.includes(filter);
+      });
+    } else {
+      newList = data;
+      setEmptyMsg('withoutFilter');
+    }
+		// Set the filtered state based on what our rules added to newList
+    setFiltered(newList);
+  }
+  
+  const content =
+    filtered.length === 0 ? (
+      <FormattedMessage
+        id={`content-manager.components.TableEmpty.${emptyMsg}`}
+        values={values}
+      />
+    ) : (
+      filtered.map(row => {
+        return (
+          <div>
+            <div
+              key={row.id}
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleGoTo(row.id);
+              }}
+            >
+              <a href="" className={`${activePath(row.id) ? 'active' : ''}`}>{row.title || row.username}</a>
+            </div>
+          </div>
+        );
+      })
+    );
+
+
 
   return (
-    <ListWrapper className="row">
-      <div className="col-md-3">
-        <div className="title">
-          <h1>
-            {slug || 'Content Manager'}          
-            <br/>
-            <span className="info">
-              { count } 
-              {
-                count > 1
-                ? ` entries found`
-                : ` entry found `
-              }
-            </span>
-          </h1>
-          <NavLink 
-            to={`${getPath(pathname)}/create${search}`}
-            className="addNew">
-          </NavLink>
+    <Wrapper>
+      <Search>
+        <div>
+          <SearchIcon />
         </div>
-        
-        <ul>
-          {data.map(row =>
-            <li key={row.id}>
-              <NavLink 
-                to={`/plugins/${pluginId}/${slug}/${row.id}${search}`}>
-                  { row.title || row.name || row.url || row.username }
-              </NavLink>
-            </li>
-          )}
-        </ul>
-        <Footer />
-      </div>
-
-      <div className="col-md-6">
-        <Switch>
-          <Route
-            path={`/plugins/${pluginId}/:slug/:id`}
-            render={props => renderRoute(props)}/>
-          )} 
-        </Switch>
-      </div>
-    </ListWrapper>
+        <div>
+          <input
+            onChange={handleChange}
+            placeholder="Search..."
+            type="text"
+            className="input"
+          />
+        </div>
+      </Search>
+      <div>{content}</div>
+    </Wrapper>
   );
 }
 
@@ -104,18 +138,19 @@ List.defaultProps = {
   data: [],
   headers: [],
   isBulkable: true,
-  slug: '',
 };
 
 List.propTypes = {
   data: PropTypes.array,
   headers: PropTypes.array,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      slug: PropTypes.string.isRequired
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+      search: PropTypes.string,
     }),
-  }),
-  slug: PropTypes.string,
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  isBulkable: PropTypes.bool,
 };
 
 export default withRouter(memo(List));

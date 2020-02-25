@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   height: 100vh;
   width: ${props => props.theme.main.sizes.leftMenu.width};
   background: #FAFAFB;
-  // background: ${props => props.theme.main.colors.strapi['blue-darker']};
 `;
 
 Wrapper.defaultProps = {

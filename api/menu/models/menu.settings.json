@@ -1,0 +1,32 @@
+{
+  "connection": "default",
+  "collectionName": "menus",
+  "info": {
+    "name": "menu"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "submenus": {
+      "collection": "menu",
+      "via": "parent"
+    },
+    "parent": {
+      "model": "menu",
+      "via": "submenus"
+    },
+    "contents": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-plugin.content"
+    }
+  }
+}

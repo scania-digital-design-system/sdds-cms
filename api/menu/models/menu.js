@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Lifecycle callbacks for the `navigation` model.
+ * Lifecycle callbacks for the `menu` model.
  */
 
 module.exports = {

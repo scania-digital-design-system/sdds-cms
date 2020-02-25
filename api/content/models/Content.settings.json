@@ -1,35 +1,22 @@
 {
-  "connection": "default",
-  "collectionName": "contents",
   "info": {
-    "name": "content",
-    "description": "Content listing"
+    "name": "content"
   },
   "options": {
     "increments": true,
-    "timestamps": [
-      "created_at",
-      "updated_at"
-    ],
-    "comment": ""
+    "timestamps": true
   },
   "attributes": {
     "title": {
       "type": "string"
     },
-    "tag": {
-      "type": "string"
-    },
-    "examples": {
-      "collection": "example",
-      "via": "contents",
-      "dominant": true
-    },
-    "description": {
+    "text": {
       "type": "richtext"
     },
-    "template": {
-      "model": "template"
+    "subcontents": {
+      "collection": "content"
     }
-  }
+  },
+  "connection": "default",
+  "collectionName": "contents"
 }

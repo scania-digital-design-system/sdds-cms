@@ -21,14 +21,16 @@ import Wrapper from './components';
 import messages from './messages.json';
 
 const Plugin = ({ plugins, history: { push } }) => {
+  
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(prev => !prev);
+  
   const handleGoTo = (path) => {
     const id = get(auth.getUserInfo(), 'id');
     const location = { pathname: path } || {
-      pathname: `/plugins/content-manager/administrator/${id}`,
+      pathname: `plugins/content-manager/strapi::administrator/${id}`,
       search:
-        '?redirectUrl=/plugins/content-manager/administrator/?page=0&limit=0&sort=id&source=admin',
+        '?redirectUrl=/plugins/content-manager/strapi::administrator/&_page=0&_limit=0&_sort=id',
     };
 
     push(location);
@@ -37,7 +39,7 @@ const Plugin = ({ plugins, history: { push } }) => {
   // Check if the plugins list is empty or not and display plugins by name
   const pluginsLinks = !isEmpty(plugins) ? (
     map(sortBy(plugins, 'name'), plugin => {
-      if (plugin.id !== 'email') {
+      if (plugin.id !== 'email' && plugin.id !== 'content-manager') {
         const pluginSuffixUrl = plugin.suffixUrl
           ? plugin.suffixUrl(plugins)
           : '';
@@ -46,17 +48,7 @@ const Plugin = ({ plugins, history: { push } }) => {
 
         return (
           <DropdownItem onClick={() => handleGoTo(destination)} className="item" key={plugin.id}>
-            {/* <FormattedMessage
-              key={get(plugin, 'id')}
-              icon={get(plugin, 'icon') || 'plug'}
-              label={get(plugin, 'name')}
-              destination={destination}
-              pluginSuffixUrl={pluginSuffixUrl}
-              suffixUrlToReplaceForLeftMenuHighlight={
-                plugin.suffixUrlToReplaceForLeftMenuHighlight || ''
-              }
-            /> */}
-            {get(plugin, 'name')}
+          {get(plugin, 'name')}
           </DropdownItem>
         );
       }
@@ -78,8 +70,12 @@ const Plugin = ({ plugins, history: { push } }) => {
       label: messages.installNewPlugin.id,
       destination: '/marketplace',
     },
+    {
+      icon: 'cog',
+      label: messages.settings.id,
+      destination: '/settings/webhooks',
+    },
   ];
-
   return (
     <Wrapper>
       <ButtonDropdown isOpen={isOpen} toggle={toggle}>
