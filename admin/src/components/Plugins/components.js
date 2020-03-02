@@ -60,6 +60,12 @@ const Wrapper = styled.div`
     opacity: 0;
   }
 
+  .btn-group {
+    svg {
+      margin-left:10px;
+    }
+  }
+
   .dropDownContent {
     z-index: 8;
     top: -3px !important;

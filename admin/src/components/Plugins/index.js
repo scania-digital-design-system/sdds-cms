@@ -85,6 +85,9 @@ const Plugin = ({ plugins, history: { push } }) => {
         </DropdownToggle>
         <DropdownMenu className="dropDownContent">
           {pluginsLinks}
+          <DropdownItem onClick={() => handleGoTo('/list-plugins')} className="item">
+          Plugins
+          </DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>
       {/* <ButtonDropdown isOpen={isOpen} toggle={toggle}>
