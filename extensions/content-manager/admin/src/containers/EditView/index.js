@@ -25,7 +25,7 @@ import createAttributesLayout from './utils/createAttributesLayout';
 import { LinkWrapper, SubWrapper } from './components';
 import init from './init';
 import reducer, { initialState } from './reducer';
-
+import lvReducer, { initialState as lvIS } from '../ListView/reducer'
 /* eslint-disable  react/no-array-index-key */
 
 const EditView = ({
@@ -45,6 +45,17 @@ const EditView = ({
   const [reducerState, dispatch] = useReducer(reducer, initialState, () =>
     init(initialState)
   );
+
+  const [lvReducerState, lvDispatch] = useReducer(lvReducer, lvIS, () =>
+    init(lvIS)
+  );
+
+  const {
+    data
+  } = lvReducerState.toJS();
+
+  console.log(1, data)
+
   const allLayoutData = useMemo(() => get(layouts, [slug], {}), [
     layouts,
     slug,

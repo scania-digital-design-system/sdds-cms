@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import { NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { upperFirst } from 'lodash';
 import pluginId from '../../pluginId';

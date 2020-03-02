@@ -8,10 +8,15 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "graphql": "strapi install graphql"
+    "graphql": "strapi install graphql",
+    "productionBuild": "cross-env NODE_ENV=production npm run build",
+    "production": "cross-env NODE_ENV=production npm start"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "pg": "^7.18.2"
+  },
   "dependencies": {
+    "cross-env": "^7.0.0",
     "knex": "<0.20.0",
     "sqlite3": "latest",
     "strapi": "3.0.0-beta.18.7",

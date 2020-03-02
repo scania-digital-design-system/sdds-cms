@@ -21,7 +21,6 @@ import {
   generateSearchFromFilters,
 } from '../../utils/search';
 import ListViewProvider from '../ListViewProvider';
-import EditViewProvider from '../EditViewDataManagerProvider';
 import { onChangeListLabels, resetListLabels } from '../Main/actions';
 import { Wrapper } from './components';
 import Footer from './Footer';
