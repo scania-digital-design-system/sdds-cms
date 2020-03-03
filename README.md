@@ -6,22 +6,40 @@ Export navigation data:
 
 ```shell
 query {
-  navigation(id: 2) {
-    name
-    pages {
-      ...PageFields
-      pages {
-        ...PageFields
+  navigation(id:1) {
+    id
+    title
+    menus {
+      ...allMenu
+      submenus {
+        ...allMenu
       }
     }
   }
 }
 
-fragment PageFields on Page {
+fragment allMenu on Menu {
   id
   url
-  content {
-    title
+  title
+}
+```
+
+Import content data:
+
+```shell
+mutation CreateNewContent($newData:createContentInput) {
+  createContent(input: $newData) { 
+  	content {title, text}
+  }
+}
+
+{
+  "newData":  {
+    "data": {
+      "title": "Dealer header usage",
+      "text": "Dealer header description"
+    }
   }
 }
 ```
