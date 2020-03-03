@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { get, snakeCase, isEmpty, map, sortBy } from 'lodash';
+import { get, snakeCase, isEmpty, sortBy } from 'lodash';
 import LeftMenuLink from '../LeftMenuLink';
 import Wrapper from './Wrapper';
 import messages from './messages.json';
@@ -52,17 +52,23 @@ function LeftMenuLinkContainer({ plugins, ...rest }) {
         <div className="addWrapper">
           <a className="addNew" href={`http://localhost:8080/admin/plugins/content-type-builder/content-types/application::contents.contents?modalType=contentType&actionType=create&settingType=base&forTarget=contentType&headerId=content-type-builder.modalForm.contentType.header-create&header_icon_name_1=contentType&header_icon_isCustom_1=false&header_label_1=null`}></a>
         </div>
-        <ul className="list  models-list">
+        <ul className="list">
           {sortBy(contentTypes, 'label').map((link, i) => (
             <LeftMenuLink
               {...rest}
               key={`${i}-${link.label}`}
-              icon={link.icon || 'circle'}
               label={link.label}
               destination={`/plugins/${link.plugin}/${link.destination ||
                 link.uid}`}
             />
           ))}
+        </ul>
+        <ul className="list">
+          <LeftMenuLink
+            {...rest}
+            label='Upload File'
+            destination={`/plugins/upload`}
+          />
         </ul>
       </div>
     );

@@ -43,9 +43,6 @@ function LeftMenuLink(props) {
     <span>{props.label}</span>
   );
 
-  // Icon.
-  const icon = <i className={`linkIcon fa-${props.icon} fa`} />;
-
   // Create external or internal link.
   const link = props.destination.includes('http') ? (
     <a
