@@ -7,8 +7,6 @@ import pluginId from '../../pluginId';
 import useListView from '../../hooks/useListView';
 import { Wrapper, Search } from './components';
 import SearchIcon from '../../icons/Search';
-import reducer, { initialState } from '../../containers/EditViewDataManagerProvider/reducer';
-import mainReducer, { initialState as mainInState } from '../../containers/Main/reducer';
 
 function List({
   data,
@@ -26,34 +24,25 @@ function List({
     slug,
   } = useListView();
 
-  const [reducerState, dispatch] = useReducer(reducer, initialState);
-  const [mainRedState, mainRedDispatch] = useReducer(mainReducer, mainInState);
-
   const [filtered, setFiltered] = useState(data);
   const [emptyMsg, setEmptyMsg] = useState('withoutFilter');
 
-  const redirectUrl = `redirectUrl=${pathname}`;
+  const redirectUrl = `${pathname}${search}`;
+
+  const searchVal = () => {
+    const currentSearch = search.indexOf('redirectUrl=') !== -1; //already contains redirect
+    return `redirectUrl=${currentSearch ? search.split('redirectUrl=').pop() : redirectUrl}`;
+  }
 
   const handleGoTo = id => {
     emitEvent('willEditEntryFromList');
     push({
       pathname: `/plugins/${pluginId}/${slug}/${id}`,
-      search: redirectUrl,
+      search: searchVal(),
     });
   };
 
   const values = { contentType: upperFirst(label), search: _q };
-
-  const {
-    submitSuccess
-  } = reducerState.toJS();
-
-  const {
-    saveSuccess
-  } = mainRedState.toJS();
-
-  console.log(submitSuccess)
-  console.log(saveSuccess)
 
   const activePath = (id) => {
     const pathID = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -74,9 +63,12 @@ function List({
 
       newList = currentList.filter(item => {
         // Convert to lowercase to search without match case
-        const listItem = item.title.toLowerCase();
-        const filter = e.target.value.toLowerCase();
-        return listItem.includes(filter);
+        // check if item.title exist to avoid breaking the code when item.title is null
+        if(item.title) {
+          const listItem = item.title.toLowerCase();
+          const filter = e.target.value.toLowerCase();
+          return listItem.includes(filter);
+        }
       });
     } else {
       newList = data;

@@ -19,6 +19,8 @@ import Container from '../../components/Container';
 import {
   generateFiltersFromSearch,
   generateSearchFromFilters,
+  generateSearch,
+  generateFilters
 } from '../../utils/search';
 import ListViewProvider from '../ListViewProvider';
 import { onChangeListLabels, resetListLabels } from '../Main/actions';
@@ -146,7 +148,7 @@ function ListView({
 
   const handleChangeParams = ({ target: { name, value } }) => {
     const updatedSearch = getSearchParams({ [name]: value });
-    const newSearch = generateSearchFromFilters(updatedSearch);
+    const newSearch = `${generateFilters(updatedSearch)}?${generateSearch(updatedSearch)}`;
 
     if (name === '_limit') {
       emitEvent('willChangeNumberOfEntriesPerPage');
@@ -208,8 +210,10 @@ function ListView({
     return newPath.join('/');
   }
 
-  const getPathId = (path) => {
-    return path.substring(path.lastIndexOf('/') + 1)
+  const isNotMainPage = (path) => {
+    const pathID = path.substring(path.lastIndexOf('/') + 1);
+    console.log(pathID)
+    return /\d/.test(pathID) || pathID === 'create'; // path Id is number or 'create' then do not create redirectUrl
   }
 
   return (
@@ -248,15 +252,14 @@ function ListView({
                     <a className="addNew" onClick={() => {
                       emitEvent('willCreateEntry');
                       push({
-                        pathname: `${/\d/.test(getPathId(pathname)) ? createLink(pathname) : pathname}/create`,
-                        search: search.indexOf('redirectUrl') !== -1 ? '' : `redirectUrl=${pathname}${search}`,
+                        pathname: `${isNotMainPage(pathname) ? createLink(pathname) : pathname}/create`,
+                        search: search.indexOf('redirectUrl') !== -1 && isNotMainPage(pathname) ? '' : `redirectUrl=${pathname}${search}`,
                       });
                     }}></a>
                   </div>
                   <List
                     data={data}
                     isBulkable={getLayoutSettingRef.current('bulkable')}
-                    onChangeParams={handleChangeParams}
                   />
                   <Footer />
                 </Container>

@@ -16,7 +16,6 @@ import cleanData from './utils/cleanData';
 import getYupInnerErrors from './utils/getYupInnerErrors';
 import init from './init';
 import reducer, { initialState } from './reducer';
-import mainReducer, { initialState as mainInState } from '../Main/reducer';
 
 const getRequestUrl = path => `/${pluginId}/explorer/${path}`;
 
@@ -24,12 +23,12 @@ const EditViewDataManagerProvider = ({
   allLayoutData,
   children,
   redirectToPreviousPage,
+  redirectAfterSubmit,
   slug,
 }) => {
   const { id } = useParams();
   // Retrieve the search
   const [reducerState, dispatch] = useReducer(reducer, initialState, init);
-  const [mainRedState, mainRedDispatch] = useReducer(mainReducer, mainInState);
   const {
     formErrors,
     initialData,
@@ -40,9 +39,6 @@ const EditViewDataManagerProvider = ({
     shouldCheckErrors,
     submitSuccess
   } = reducerState.toJS();
-  const {
-    saveSuccess
-  } = mainRedState.toJS();
 
   const currentContentTypeLayout = get(allLayoutData, ['contentType'], {});
   const abortController = new AbortController();
@@ -273,13 +269,8 @@ const EditViewDataManagerProvider = ({
         dispatch({
           type: 'SUBMIT_SUCCESS',
         });
-        mainRedDispatch({
-          type: 'SAVE_SUCCESS'
-        });
-        emitEvent('submitDone');
         strapi.notification.success('Successfully update content');
-        // location.reload();
-        // redirectToPreviousPage();
+        redirectAfterSubmit();
       } catch (err) {
         console.error({ err });
         const error = get(

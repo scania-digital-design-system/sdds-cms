@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "contents",
   "info": {
     "name": "content"
   },
@@ -8,15 +10,15 @@
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "text": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "subcontents": {
       "collection": "content"
     }
-  },
-  "connection": "default",
-  "collectionName": "contents"
+  }
 }

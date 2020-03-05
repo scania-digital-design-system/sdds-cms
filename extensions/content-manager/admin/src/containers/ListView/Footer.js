@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { GlobalPagination, InputSelect } from 'strapi-helper-plugin';
+import { GlobalPagination } from 'strapi-helper-plugin';
 import useListView from '../../hooks/useListView';
 import { FooterWrapper, SelectWrapper, Label } from './components';
 
@@ -21,9 +21,9 @@ function Footer() {
             onChangeParams({ target: { name: '_page', value } });
           }}
           params={{
-            currentPage: parseInt(_page, 20),
-            _limit: parseInt(_limit, 20),
-            _page: parseInt(_page, 20),
+            currentPage: parseInt(_page, 10),
+            _limit: parseInt(_limit, 10),
+            _page: parseInt(_page, 10),
           }}
         />
       </div>

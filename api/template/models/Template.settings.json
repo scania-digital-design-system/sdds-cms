@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "templates",
   "info": {
     "name": "template"
   },
@@ -8,12 +10,12 @@
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "text": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     }
-  },
-  "connection": "default",
-  "collectionName": "templates"
+  }
 }

@@ -25,7 +25,6 @@ import createAttributesLayout from './utils/createAttributesLayout';
 import { LinkWrapper, SubWrapper } from './components';
 import init from './init';
 import reducer, { initialState } from './reducer';
-import lvReducer, { initialState as lvIS } from '../ListView/reducer'
 /* eslint-disable  react/no-array-index-key */
 
 const EditView = ({
@@ -40,21 +39,11 @@ const EditView = ({
   // Retrieve push to programmatically navigate between views
   const { push } = useHistory();
   // Retrieve the search
-  const { search } = useLocation();
+  const { search, pathname } = useLocation();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const [reducerState, dispatch] = useReducer(reducer, initialState, () =>
     init(initialState)
   );
-
-  const [lvReducerState, lvDispatch] = useReducer(lvReducer, lvIS, () =>
-    init(lvIS)
-  );
-
-  const {
-    data
-  } = lvReducerState.toJS();
-
-  console.log(1, data)
 
   const allLayoutData = useMemo(() => get(layouts, [slug], {}), [
     layouts,
@@ -135,11 +124,18 @@ const EditView = ({
 
   // We can't use the getQueryParameters helper here because the search
   // can contain 'redirectUrl' several times since we can navigate between documents
+  
   const redirectURL = search
     .split('redirectUrl=')
     .filter((_, index) => index !== 0)
     .join('');
+  const afterSubmitURL = () => {
+    const id = pathname.split('/').pop();
+    return id === 'create' ? pathname.substring(0, pathname.lastIndexOf('/')) : pathname;
+  }
+
   const redirectToPreviousPage = () => push(redirectURL);
+  const redirectAfterSubmit = () => push(afterSubmitURL());
 
   return (
     <EditViewProvider
@@ -162,6 +158,7 @@ const EditView = ({
         allLayoutData={allLayoutData}
         redirectToPreviousPage={redirectToPreviousPage}
         slug={slug}
+        redirectAfterSubmit={redirectAfterSubmit}
       >
         {/* <BackHeader onClick={() => redirectToPreviousPage()} /> */}
         <Container className="container-fluid">
