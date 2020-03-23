@@ -33,6 +33,12 @@
     },
     "index": {
       "type": "integer"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
     }
   }
 }

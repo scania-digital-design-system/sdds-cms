@@ -19,12 +19,6 @@
     },
     "subcontents": {
       "collection": "content"
-    },
-    "thumbnail": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload",
-      "required": false
     }
   }
 }
