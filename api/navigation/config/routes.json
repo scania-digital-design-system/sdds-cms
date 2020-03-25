@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/navigations",
-      "handler": "Navigation.find",
+      "handler": "navigation.find",
       "config": {
         "policies": []
       }
@@ -11,7 +11,7 @@
     {
       "method": "GET",
       "path": "/navigations/count",
-      "handler": "Navigation.count",
+      "handler": "navigation.count",
       "config": {
         "policies": []
       }
@@ -19,7 +19,7 @@
     {
       "method": "GET",
       "path": "/navigations/:id",
-      "handler": "Navigation.findOne",
+      "handler": "navigation.findOne",
       "config": {
         "policies": []
       }
@@ -27,7 +27,7 @@
     {
       "method": "POST",
       "path": "/navigations",
-      "handler": "Navigation.create",
+      "handler": "navigation.create",
       "config": {
         "policies": []
       }
@@ -35,7 +35,7 @@
     {
       "method": "PUT",
       "path": "/navigations/:id",
-      "handler": "Navigation.update",
+      "handler": "navigation.update",
       "config": {
         "policies": []
       }
@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/navigations/:id",
-      "handler": "Navigation.delete",
+      "handler": "navigation.delete",
       "config": {
         "policies": []
       }

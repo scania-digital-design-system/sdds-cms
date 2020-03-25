@@ -2,20 +2,19 @@
   "connection": "default",
   "collectionName": "navigations",
   "info": {
-    "name": "navigation",
-    "description": "Navigation listing"
+    "name": "navigation"
   },
   "options": {
     "increments": true,
-    "timestamps": true,
-    "comment": ""
+    "timestamps": true
   },
   "attributes": {
-    "name": {
-      "type": "string"
+    "title": {
+      "type": "string",
+      "required": true
     },
-    "pages": {
-      "collection": "page"
+    "menus": {
+      "collection": "menu"
     }
   }
 }

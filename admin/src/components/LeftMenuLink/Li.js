@@ -1,0 +1,108 @@
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+const Li = styled.li`
+  position: relative;
+  overflow: hidden;
+
+  &:not(:first-child) {
+    margin-top: 0;
+  }
+
+  .plugin {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: calc(100% - 4px);
+    display: inline-block;
+    width: auto;
+    height: 20px;
+    transition: right 1s ease-in-out;
+
+    span {
+      display: inline-block;
+      overflow: hidden;
+      width: auto;
+      height: 20px;
+      padding: 0 14px 0 10px;
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 20px;
+      background: #0097f7;
+      border-radius: 3px;
+      transition: transform 0.3s ease-in-out;
+      white-space: pre;
+
+      &:hover {
+        transform: translateX(calc(-100% + 9px));
+      }
+    }
+  }
+
+  .link {
+    position: relative;
+    padding: 0.8rem 2.2rem;
+    cursor: pointer;
+    color: ${props => props.theme.main.colors.leftMenu['link-color']};
+    text-decoration: none;
+    display: block;
+    -webkit-font-smoothing: antialiased;
+
+    &:hover {
+      color: ${props => props.theme.main.colors.white};
+      background: ${props => props.theme.main.colors.leftMenu['link-hover']};
+      text-decoration: none;
+    }
+
+    &:focus {
+      color: ${props => props.theme.main.colors.white};
+      text-decoration: none;
+    }
+  }
+
+  .linkActive {
+    color: ${props => props.theme.main.colors.white};
+    // border-left: 0.3rem solid ${props => props.theme.main.colors.strapi.blue};
+    background: ${props => props.theme.main.colors.leftMenu['link-hover']};
+  }
+
+  .linkIcon {
+    position: absolute;
+    top: calc(50% - 1.2rem + 0.5rem);
+    left: 1.6rem;
+    margin-right: 1.2rem;
+    font-size: 1.2rem;
+    width: 1.4rem;
+    height: 1.2rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .linkLabel {
+    display: inline-block;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 2.6rem;
+  }
+`;
+
+Li.defaultProps = {
+  theme: {
+    main: {
+      colors: {
+        leftMenu: {},
+        strapi: {},
+      },
+      sizes: {
+        header: {},
+        leftMenu: {},
+      },
+    },
+  },
+};
+
+Li.propTypes = {
+  theme: PropTypes.object,
+};
+
+export default Li;

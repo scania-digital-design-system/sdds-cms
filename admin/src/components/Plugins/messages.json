@@ -1,0 +1,26 @@
+{
+  "listPlugins": {
+    "id": "app.components.Plugins.listPlugins",
+    "defaultMessage": "Plugins"
+  },
+  "installNewPlugin": {
+    "id": "app.components.Plugins.installNewPlugin",
+    "defaultMessage": "Marketplace"
+  },
+  "plugins": {
+    "id": "app.components.Plugins.plugins",
+    "defaultMessage": "Plugins"
+  },
+  "general": {
+    "id": "app.components.Plugins.general",
+    "defaultMessage": "General"
+  },
+  "noPluginsInstalled": {
+    "id": "app.components.Plugins.noPluginsInstalled",
+    "defaultMessage": "No plugins installed yet"
+  },
+  "settings": {
+    "id": "app.components.LeftMenuLinkContainer.settings",
+    "defaultMessage": "Settings"
+  }
+}

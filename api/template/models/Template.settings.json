@@ -2,23 +2,23 @@
   "connection": "default",
   "collectionName": "templates",
   "info": {
-    "name": "template",
-    "description": "Template listing"
+    "name": "template"
   },
   "options": {
     "increments": true,
-    "timestamps": [
-      "created_at",
-      "updated_at"
-    ],
-    "comment": ""
+    "timestamps": true
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "sections": {
-      "collection": "section"
+    "text": {
+      "type": "richtext",
+      "required": true
+    },
+    "index": {
+      "type": "integer"
     }
   }
 }

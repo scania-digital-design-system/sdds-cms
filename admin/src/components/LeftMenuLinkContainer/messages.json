@@ -1,0 +1,34 @@
+{
+  "contentTypes": {
+    "id": "app.components.LeftMenuLinkContainer.contentTypes",
+    "defaultMessage": "Content Types"
+  },
+  "listPlugins": {
+    "id": "app.components.LeftMenuLinkContainer.listPlugins",
+    "defaultMessage": "Plugins"
+  },
+  "installNewPlugin": {
+    "id": "app.components.LeftMenuLinkContainer.installNewPlugin",
+    "defaultMessage": "Marketplace"
+  },
+  "configuration": {
+    "id": "app.components.LeftMenuLinkContainer.configuration",
+    "defaultMessage": "Configurations"
+  },
+  "plugins": {
+    "id": "app.components.LeftMenuLinkContainer.plugins",
+    "defaultMessage": "Plugins"
+  },
+  "general": {
+    "id": "app.components.LeftMenuLinkContainer.general",
+    "defaultMessage": "General"
+  },
+  "noPluginsInstalled": {
+    "id": "app.components.LeftMenuLinkContainer.noPluginsInstalled",
+    "defaultMessage": "No plugins installed yet"
+  },
+  "settings": {
+    "id": "app.components.LeftMenuLinkContainer.settings",
+    "defaultMessage": "Settings"
+  }
+}
