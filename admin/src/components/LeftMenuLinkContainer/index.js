@@ -50,7 +50,7 @@ function LeftMenuLinkContainer({ plugins, ...rest }) {
           </FormattedMessage>
         </p>
         <div className="addWrapper">
-          <a className="addNew" href={`http://localhost:8080/admin/plugins/content-type-builder/content-types/application::contents.contents?modalType=contentType&actionType=create&settingType=base&forTarget=contentType&headerId=content-type-builder.modalForm.contentType.header-create&header_icon_name_1=contentType&header_icon_isCustom_1=false&header_label_1=null`}></a>
+          <a className="addNew" href={`/admin/plugins/content-type-builder/content-types/application::contents.contents?modalType=contentType&actionType=create&settingType=base&forTarget=contentType&headerId=content-type-builder.modalForm.contentType.header-create&header_icon_name_1=contentType&header_icon_isCustom_1=false&header_label_1=null`}></a>
         </div>
         <ul className="list">
           {sortBy(contentTypes, 'label').map((link, i) => (

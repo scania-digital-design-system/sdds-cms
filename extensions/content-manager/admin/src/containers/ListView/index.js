@@ -245,7 +245,7 @@ function ListView({
         <div className="container-fluid">
           <Wrapper>
             <div className="row">
-              <div className="col-3">
+              <div className="col-3 left-list">
                 <Container>
                   {!isFilterPickerOpen && <Header {...headerProps} />}
                   <div className="addWrapper">
@@ -264,7 +264,7 @@ function ListView({
                   <Footer />
                 </Container>
               </div>
-              <div className="col-9">
+              <div className="col-9 right-content">
                 <Switch>
                   <Route
                     key=':id'

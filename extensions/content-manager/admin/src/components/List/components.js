@@ -1,13 +1,35 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
-  a {
-    padding-bottom: 15px;
-    display: inline-block;
-    &.active {
-      text-decoration: underline;
-    }
+.link {
+  position: relative;
+  padding: 0.8rem 2.2rem;
+  margin-left:-15px;
+  margin-right:-15px;
+  cursor: pointer;
+  color: ${props => props.theme.main.colors.leftMenu['link-color']};
+  text-decoration: none;
+  display: block;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover {
+    color: ${props => props.theme.main.colors.white};
+    background: ${props => props.theme.main.colors.leftMenu['link-hover']};
+    text-decoration: none;
   }
+
+  &:focus {
+    color: ${props => props.theme.main.colors.white};
+    text-decoration: none;
+  }
+}
+
+.linkActive {
+  color: ${props => props.theme.main.colors.white};
+  // border-left: 0.3rem solid ${props => props.theme.main.colors.strapi.blue};
+  background: ${props => props.theme.main.colors.leftMenu['link-hover']};
+}
 `;
 
 const Search = styled.div`

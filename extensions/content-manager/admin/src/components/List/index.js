@@ -87,17 +87,15 @@ function List({
     ) : (
       filtered.map(row => {
         return (
-          <div>
-            <div
-              key={row.id}
-              onClick={e => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleGoTo(row.id);
-              }}
-            >
-              <a href="" className={`${activePath(row.id) ? 'active' : ''}`}>{row.title || row.username}</a>
-            </div>
+          <div
+            key={row.id}
+            onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleGoTo(row.id);
+            }}
+          >
+            <a href="" className={`link ${activePath(row.id) ? 'linkActive' : ''}`}>{row.title || row.username}</a>
           </div>
         );
       })
