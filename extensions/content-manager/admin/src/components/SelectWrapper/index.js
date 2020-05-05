@@ -40,7 +40,7 @@ function SelectWrapper({
 
   const [state, setState] = useState({
     _q: '',
-    _limit: 100,
+    _limit: 200,
     _start: 0,
   });
   const [options, setOptions] = useState([]);
