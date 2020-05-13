@@ -33,6 +33,13 @@ const Wrapper = styled.div`
       transform: rotate(90deg);
     }
   }
+
+  .right-content {
+    form {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
 `;
 
 const FilterIcon = styled(Filter)`
