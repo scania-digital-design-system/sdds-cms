@@ -13,12 +13,14 @@
       "type": "string",
       "required": true
     },
-    "text": {
-      "type": "richtext",
-      "required": true
-    },
     "subcontents": {
       "collection": "content"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-plugin.repeat-content",
+      "required": true
     }
   }
 }
