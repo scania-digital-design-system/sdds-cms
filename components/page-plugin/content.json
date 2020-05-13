@@ -1,9 +1,7 @@
 {
-  "connection": "default",
-  "collectionName": "components_component_contents",
   "info": {
     "name": "content",
-    "icon": "book"
+    "icon": "file-alt"
   },
   "options": {},
   "attributes": {
@@ -13,5 +11,7 @@
     "template": {
       "model": "template"
     }
-  }
+  },
+  "connection": "default",
+  "collectionName": "components_page_plugin_contents"
 }

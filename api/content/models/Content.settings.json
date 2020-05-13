@@ -16,9 +16,6 @@
     "text": {
       "type": "richtext",
       "required": true
-    },
-    "subcontents": {
-      "collection": "content"
     }
   }
 }
