@@ -10,9 +10,9 @@
     "describe": {
       "type": "richtext"
     },
-    "sectionId": {
+    "sectionTitle": {
       "type": "string",
-      "required": true,
+      "required": false,
       "unique": true
     },
     "hidden": {
