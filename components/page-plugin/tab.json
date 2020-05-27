@@ -1,0 +1,23 @@
+{
+  "connection": "default",
+  "collectionName": "components_page_plugin_tabs",
+  "info": {
+    "name": "tab",
+    "icon": "grip-vertical"
+  },
+  "options": {},
+  "attributes": {
+    "tabTitle": {
+      "type": "string"
+    },
+    "enableTab": {
+      "type": "boolean",
+      "default": true
+    },
+    "tabContent": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-plugin.content"
+    }
+  }
+}

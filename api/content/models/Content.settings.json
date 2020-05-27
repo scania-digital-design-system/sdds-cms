@@ -13,9 +13,6 @@
       "type": "string",
       "required": true
     },
-    "subcontents": {
-      "collection": "content"
-    },
     "sections": {
       "type": "component",
       "repeatable": true,
