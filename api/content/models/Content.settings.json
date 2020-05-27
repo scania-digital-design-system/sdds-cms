@@ -14,7 +14,12 @@
       "required": true
     },
     "text": {
-      "type": "richtext",
+      "type": "richtext"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-plugin.repeat-content",
       "required": true
     }
   }
