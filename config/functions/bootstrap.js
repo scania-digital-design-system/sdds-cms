@@ -11,13 +11,13 @@
  */
 
   //Setting the env variables for development
-  if(process.env.NODE_ENV !== 'production') {
-    console.log('Devlopment: reading local .env file');
-    const result = require('dotenv').config();
-    if (result.error) {
-      throw result.error;
-    }
-  }
+  // if(process.env.NODE_ENV !== 'production') {
+  //   console.log('Devlopment: reading local .env file');
+  //   const result = require('dotenv').config();
+  //   if (result.error) {
+  //     throw result.error;
+  //   }
+  // }
 
 
 module.exports = () => {};
