@@ -17,6 +17,7 @@
     if (result.error) {
       throw result.error;
     }
+    console.log(`Success connection to DB: ${result.parsed.DATABASE_HOST}:${result.parsed.DATABASE_PORT}`)
   }
 
 
