@@ -12,9 +12,7 @@
         "password": "${process.env.DATABASE_PASSWORD}",
         "ssl": false
       },
-      "options": {
-        "debug": true
-      }
+      "options": {}
     }
   }
 }
