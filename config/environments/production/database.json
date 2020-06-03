@@ -13,6 +13,7 @@
         "ssl": false
       },
       "options": {
+        "debug": true,
         "pool":{
           "min": 0,
           "max": 10,
