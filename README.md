@@ -1,32 +1,22 @@
-# Strapi application
+# Scania Digital Design System CMS
 
-A quick description of your strapi application
+A quick description of SDDS CMS
 
+```shell
+npm i
+npm run build
+npm start
+```
 
-setup local env database in config/environments/development/database.json:
-
-{
-  "defaultConnection": "default",
-  "connections": {
-    "default": {
-      "connector": "bookshelf",
-      "settings": {
-        "client": "postgres",
-        "host": "localhost",
-        "port": "5432",
-        "database": "database name",
-        "username": "username",
-        "password": "Your password",
-        "ssl": false
-      },
-      "options": {
-        "useNullAsDefault": true
-      }
-    }
-  }
-}
-
-
+Setup local postgres database:
+- Add .env file with following config
+```shell
+DATABASE_HOST=Host e.g localhost
+DATABASE_PORT=port number e.g 5432
+DATABASE_NAME=database
+DATABASE_USERNAME=username
+DATABASE_PASSWORD=password
+```
 
 Export navigation data:
 
