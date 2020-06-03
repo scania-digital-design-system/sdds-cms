@@ -17,7 +17,7 @@
     "cross-env": "7.0.0",
     "dotenv": "^8.2.0",
     "knex": "^0.21.1",
-    "pg": "^7.18.2",
+    "pg": "^8.0.3",
     "strapi": "3.0.0-beta.18.7",
     "strapi-admin": "3.0.0-beta.18.7",
     "strapi-connector-bookshelf": "3.0.0-beta.18.7",
