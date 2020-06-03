@@ -7,9 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "describe": {
-      "type": "richtext"
-    },
     "sectionTitle": {
       "type": "string",
       "required": false,
@@ -17,6 +14,9 @@
     },
     "hidden": {
       "type": "boolean"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }
