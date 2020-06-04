@@ -25,12 +25,6 @@
       "model": "menu",
       "via": "submenus"
     },
-    "contents": {
-      "type": "component",
-      "repeatable": true,
-      "component": "page-plugin.content",
-      "required": true
-    },
     "index": {
       "type": "integer"
     },
@@ -39,6 +33,22 @@
       "via": "related",
       "plugin": "upload",
       "required": false
+    },
+    "showTabs": {
+      "type": "boolean",
+      "default": false
+    },
+    "pageStructure": {
+      "type": "dynamiczone",
+      "components": [
+        "page-plugin.tab",
+        "page-plugin.article"
+      ]
+    },
+    "contents": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-plugin.content"
     }
   }
 }

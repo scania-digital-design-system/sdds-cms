@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "components_page_plugin_repeat_contents",
+  "info": {
+    "name": "Repeat-Content",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
+    "hidden": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}
