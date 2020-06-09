@@ -44,11 +44,6 @@
         "page-plugin.tab",
         "page-plugin.article"
       ]
-    },
-    "contents": {
-      "type": "component",
-      "repeatable": true,
-      "component": "page-plugin.content"
     }
   }
 }

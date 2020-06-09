@@ -13,9 +13,6 @@
       "type": "string",
       "required": true
     },
-    "text": {
-      "type": "richtext"
-    },
     "sections": {
       "type": "component",
       "repeatable": true,
