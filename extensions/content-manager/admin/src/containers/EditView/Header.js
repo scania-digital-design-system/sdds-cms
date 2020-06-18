@@ -46,6 +46,31 @@ const Header = () => {
         .mainField;
   /* eslint-enable indent */
 
+  const rebuildSite = () => {
+    const buildHook = 'https://api.netlify.com/build_hooks/5ee22a901845d34786696f2f';
+
+    fetch(buildHook, {
+      method: 'POST',
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw new Error(response.status)
+      }
+      return response;
+    })
+    .then(
+      result => { console.log('Build...success', result)
+    })
+    .catch(error => {
+      alert('Problem rebuilding... Contact Support')
+      console.log('Fetching problem ' + error);
+    })
+  }
+
+  const openLink = () => {
+    window.open('https://digitaldesign.netlify.app/','_blank');
+  }
+
   const getHeaderActions = () => {
     const headerActions = [
       {
@@ -61,7 +86,7 @@ const Header = () => {
           paddingLeft: 15,
           paddingRight: 15,
           fontWeight: 600,
-        },
+        }
       },
       {
         color: 'success',
@@ -70,10 +95,30 @@ const Header = () => {
         }),
         type: 'submit',
         style: {
-          minWidth: 150,
+          minWidth: 100,
           fontWeight: 600,
-        },
+        }
       },
+      {
+        color: 'primary',
+        label: formatMessage({
+          id: `Rebuild`,
+        }),
+        onClick: rebuildSite,
+        style: {
+          fontWeight: 600,
+        }
+      },
+      {
+        color: 'primary',
+        label: formatMessage({
+          id: `Development`,
+        }),
+        onClick: openLink,
+        style: {
+          fontWeight: 600,
+        }
+      }
     ];
 
     if (!isCreatingEntry) {
