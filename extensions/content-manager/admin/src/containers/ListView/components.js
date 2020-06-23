@@ -12,6 +12,16 @@ const Wrapper = styled.div`
     top:20px;
   }
 
+  #rebuildSiteButton.disabled {
+    background-color: gray;
+    pointer-events: none;
+  }
+
+  button {
+    text-overflow: inherit;
+    overflow: inherit;
+  }
+
   .addNew {
     display:inline-block;
     width:25px;

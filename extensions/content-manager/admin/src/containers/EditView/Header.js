@@ -48,6 +48,7 @@ const Header = () => {
 
   const rebuildSite = () => {
     const buildHook = 'https://api.netlify.com/build_hooks/5ee22a901845d34786696f2f';
+    const rebuildButton = document.getElementById('rebuildSiteButton');
 
     fetch(buildHook, {
       method: 'POST',
@@ -56,15 +57,20 @@ const Header = () => {
       if(!response.ok) {
         throw new Error(response.status)
       }
+      rebuildButton.classList.add('disabled');
       return response;
     })
     .then(
       result => { console.log('Build...success', result)
+      setTimeout(() => {
+        rebuildButton.classList.remove('disabled');
+      },60000);
     })
     .catch(error => {
       alert('Problem rebuilding... Contact Support')
       console.log('Fetching problem ' + error);
-    })
+    });
+
   }
 
   const openLink = () => {
@@ -83,9 +89,7 @@ const Header = () => {
         }),
         type: 'button',
         style: {
-          paddingLeft: 15,
-          paddingRight: 15,
-          fontWeight: 600,
+          fontWeight: 600
         }
       },
       {
@@ -105,6 +109,7 @@ const Header = () => {
           id: `Rebuild`,
         }),
         onClick: rebuildSite,
+        id: 'rebuildSiteButton',
         style: {
           fontWeight: 600,
         }
@@ -112,7 +117,7 @@ const Header = () => {
       {
         color: 'primary',
         label: formatMessage({
-          id: `Development`,
+          id: `Preview`,
         }),
         onClick: openLink,
         style: {
