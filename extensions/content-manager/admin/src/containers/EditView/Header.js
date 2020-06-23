@@ -58,12 +58,14 @@ const Header = () => {
         throw new Error(response.status)
       }
       rebuildButton.classList.add('disabled');
+      rebuildButton.innerHTML = 'Rebuilding...'
       return response;
     })
     .then(
       result => { console.log('Build...success', result)
       setTimeout(() => {
-        rebuildButton.classList.remove('disabled');
+        rebuildButton.classList.remove('disabled')
+        rebuildButton.innerHTML = 'Rebuild'
       },60000);
     })
     .catch(error => {
