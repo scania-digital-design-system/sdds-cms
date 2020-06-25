@@ -46,6 +46,39 @@ const Header = () => {
         .mainField;
   /* eslint-enable indent */
 
+  const rebuildSite = () => {
+    const buildHook = 'https://api.netlify.com/build_hooks/5ee22a901845d34786696f2f';
+    const rebuildButton = document.getElementById('rebuildSiteButton');
+
+    fetch(buildHook, {
+      method: 'POST',
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw new Error(response.status)
+      }
+      rebuildButton.classList.add('disabled');
+      rebuildButton.innerHTML = 'Rebuilding...'
+      return response;
+    })
+    .then(
+      result => { console.log('Build...success', result)
+      setTimeout(() => {
+        rebuildButton.classList.remove('disabled')
+        rebuildButton.innerHTML = 'Rebuild'
+      },60000);
+    })
+    .catch(error => {
+      alert('Problem rebuilding... Contact Support')
+      console.log('Fetching problem ' + error);
+    });
+
+  }
+
+  const openLink = () => {
+    window.open('https://digitaldesign.netlify.app/','_blank');
+  }
+
   const getHeaderActions = () => {
     const headerActions = [
       {
@@ -58,10 +91,8 @@ const Header = () => {
         }),
         type: 'button',
         style: {
-          paddingLeft: 15,
-          paddingRight: 15,
-          fontWeight: 600,
-        },
+          fontWeight: 600
+        }
       },
       {
         color: 'success',
@@ -70,10 +101,31 @@ const Header = () => {
         }),
         type: 'submit',
         style: {
-          minWidth: 150,
+          minWidth: 100,
           fontWeight: 600,
-        },
+        }
       },
+      {
+        color: 'primary',
+        label: formatMessage({
+          id: `Rebuild`,
+        }),
+        onClick: rebuildSite,
+        id: 'rebuildSiteButton',
+        style: {
+          fontWeight: 600,
+        }
+      },
+      {
+        color: 'primary',
+        label: formatMessage({
+          id: `Preview`,
+        }),
+        onClick: openLink,
+        style: {
+          fontWeight: 600,
+        }
+      }
     ];
 
     if (!isCreatingEntry) {
