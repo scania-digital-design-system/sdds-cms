@@ -1,0 +1,20 @@
+{
+  "info": {
+    "name": "Two Columns",
+    "icon": "th-large"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "leftColumn": {
+      "type": "richtext"
+    },
+    "rightColumn": {
+      "type": "richtext"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_content_plugin_two_columns"
+}

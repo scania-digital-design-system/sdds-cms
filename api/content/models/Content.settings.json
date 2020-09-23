@@ -13,11 +13,19 @@
       "type": "string",
       "required": true
     },
-    "sections": {
-      "type": "component",
-      "repeatable": true,
-      "component": "page-plugin.repeat-content",
-      "required": true
+    "section": {
+      "type": "dynamiczone",
+      "components": [
+        "content-plugin.one-column",
+        "content-plugin.two-columns",
+        "content-plugin.right-image",
+        "content-plugin.left-image",
+        "content-plugin.icon-list",
+        "content-plugin.icon-preview",
+        "content-plugin.code-example",
+        "content-plugin.colour-list",
+        "content-plugin.overview-list"
+      ]
     }
   }
 }

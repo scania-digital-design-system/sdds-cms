@@ -1,0 +1,14 @@
+{
+  "info": {
+    "name": "Colour List",
+    "icon": "paint-brush"
+  },
+  "options": {},
+  "attributes": {
+    "colour": {
+      "type": "richtext"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_content_plugin_colour_lists"
+}
