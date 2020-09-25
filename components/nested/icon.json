@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "components_nested_icons",
+  "info": {
+    "name": "Icon",
+    "icon": "bus-alt"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "usage": {
+      "type": "text"
+    },
+    "restriction": {
+      "type": "text"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
