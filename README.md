@@ -79,7 +79,7 @@ pg_dump -Fc --no-acl --no-owner -h localhost -U postgres -f backup_file.sql > ba
 3. Restore data with a new data
 
 ```shell
-pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d local_database_name backup_file.dump
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d local_database_name backup_file.sql
 ```
 
 Restore will work if you have the exact same structure between the database that you copy and your own database.
