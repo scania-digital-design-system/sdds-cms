@@ -95,19 +95,19 @@ If you use pgAdmin interface, you can use restore tool. Right click on the datab
 
 The steps below includes steps to update heroku database with update from local database. If it's only UI changes, skip step 1-3.
 
-	1. **Dump local postgres database**
+1. **Dump local postgres database**
 
-	`pg_dump --format=c -U postgres sdds_cms_clean > sdds_cms_clean.dump`
+  ```pg_dump --format=c -U postgres sdds_cms_clean > sdds_cms_clean.dump```
+  
+2. **Host file in AWS**
 	
-	2. **Host file in AWS**
-	
-	3. **Restore to heroku database**
+3. **Restore to heroku database**
 
   *DATABASE_URL is an environment variable.*
   
-	`heroku pg:backups:restore https://database_file_url DATABASE_URL --app sdds-cms -v`
+	```heroku pg:backups:restore https://database_file_url DATABASE_URL --app sdds-cms -v```
 	
-	4. **Push from origin to heroku remote git**
+4. **Push from origin to heroku remote git**
 
 	Make sure git heroku point to correct app
 
