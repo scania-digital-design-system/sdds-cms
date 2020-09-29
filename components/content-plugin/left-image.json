@@ -1,0 +1,23 @@
+{
+  "connection": "default",
+  "collectionName": "components_content_plugin_left_images",
+  "info": {
+    "name": "Image Left",
+    "icon": "image"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

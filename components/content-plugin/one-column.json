@@ -1,0 +1,17 @@
+{
+  "info": {
+    "name": "One Column",
+    "icon": "bars"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Text": {
+      "type": "richtext"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_content_plugin_one_columns"
+}

@@ -1,0 +1,17 @@
+{
+  "info": {
+    "name": "Icon Preview",
+    "icon": "th-list"
+  },
+  "options": {},
+  "attributes": {
+    "Icon": {
+      "type": "text"
+    },
+    "Description": {
+      "type": "richtext"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_content_plugin_icon_previews"
+}

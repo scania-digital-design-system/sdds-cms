@@ -1,0 +1,14 @@
+{
+  "info": {
+    "name": "Overview List",
+    "icon": "th"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "richtext"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_content_plugin_overview_lists"
+}
