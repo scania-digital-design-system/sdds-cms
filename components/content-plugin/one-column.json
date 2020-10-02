@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "components_content_plugin_one_columns",
   "info": {
     "name": "One Column",
     "icon": "bars"
@@ -11,7 +13,5 @@
     "Text": {
       "type": "richtext"
     }
-  },
-  "connection": "default",
-  "collectionName": "components_content_plugin_one_columns"
+  }
 }

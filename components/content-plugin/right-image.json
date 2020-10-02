@@ -10,14 +10,18 @@
     "text": {
       "type": "richtext"
     },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload",
-      "required": false
-    },
     "title": {
       "type": "string"
+    },
+    "Images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.images"
+    },
+    "leftTextField": {
+      "type": "component",
+      "repeatable": false,
+      "component": "nested.textfield"
     }
   }
 }

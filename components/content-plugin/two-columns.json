@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "components_content_plugin_two_columns",
   "info": {
     "name": "Two Columns",
     "icon": "th-large"
@@ -8,13 +10,15 @@
     "Title": {
       "type": "string"
     },
-    "leftColumn": {
-      "type": "richtext"
+    "LeftColumn": {
+      "type": "component",
+      "repeatable": false,
+      "component": "nested.textfield"
     },
-    "rightColumn": {
-      "type": "richtext"
+    "RightColumn": {
+      "type": "component",
+      "repeatable": false,
+      "component": "nested.textfield"
     }
-  },
-  "connection": "default",
-  "collectionName": "components_content_plugin_two_columns"
+  }
 }
