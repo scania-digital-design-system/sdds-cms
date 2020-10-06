@@ -7,9 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "text": {
-      "type": "richtext"
-    },
     "title": {
       "type": "string"
     },
@@ -18,10 +15,10 @@
       "repeatable": true,
       "component": "nested.images"
     },
-    "leftTextField": {
+    "Paragraphs": {
       "type": "component",
-      "repeatable": false,
-      "component": "nested.textfield"
+      "repeatable": true,
+      "component": "nested.columns"
     }
   }
 }

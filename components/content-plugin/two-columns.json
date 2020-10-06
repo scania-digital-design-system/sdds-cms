@@ -10,12 +10,12 @@
     "Title": {
       "type": "string"
     },
-    "LeftColumn": {
+    "ParagraphLeft": {
       "type": "component",
       "repeatable": false,
       "component": "nested.textfield"
     },
-    "RightColumn": {
+    "ParagraphRight": {
       "type": "component",
       "repeatable": false,
       "component": "nested.textfield"
