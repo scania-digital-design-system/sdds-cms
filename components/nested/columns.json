@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "components_nested_columns",
+  "info": {
+    "name": "Columns",
+    "icon": "columns"
+  },
+  "options": {},
+  "attributes": {
+    "textfield": {
+      "type": "richtext"
+    },
+    "Columns": {
+      "type": "enumeration",
+      "enum": [
+        "One",
+        "Two",
+        "Three"
+      ]
+    }
+  }
+}
