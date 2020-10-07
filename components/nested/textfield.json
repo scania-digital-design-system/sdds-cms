@@ -1,0 +1,17 @@
+{
+  "connection": "default",
+  "collectionName": "components_nested_textfields",
+  "info": {
+    "name": "textfield",
+    "icon": "align-center"
+  },
+  "options": {},
+  "attributes": {
+    "textfield": {
+      "type": "richtext"
+    },
+    "Introduction": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "connection": "default",
+  "collectionName": "components_nested_images",
+  "info": {
+    "name": "images",
+    "icon": "camera-retro"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "label": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "string"
+    },
+    "negative": {
+      "type": "boolean"
+    },
+    "alternate": {
+      "type": "string"
+    }
+  }
+}
