@@ -10,7 +10,7 @@
     "textfield": {
       "type": "richtext"
     },
-    "Ingress": {
+    "Introduction": {
       "type": "boolean"
     }
   }
