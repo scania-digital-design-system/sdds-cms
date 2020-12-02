@@ -24,7 +24,9 @@
         "content-plugin.icon-preview",
         "content-plugin.code-example",
         "content-plugin.colour-list",
-        "content-plugin.overview-list"
+        "content-plugin.overview-list",
+        "content-plugin.full-width-image",
+        "content-plugin.three-columns"
       ]
     }
   }

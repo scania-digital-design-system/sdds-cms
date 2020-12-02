@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "components_content_plugin_full_width_images",
+  "info": {
+    "name": "Full width image",
+    "icon": "tv"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "string"
+    },
+    "Image": {
+      "type": "component",
+      "repeatable": false,
+      "component": "nested.images"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "info": {
+    "name": "Three columns",
+    "icon": "solar-panel"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "Column1": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.textfield"
+    },
+    "Column2": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.textfield"
+    },
+    "Column3": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.textfield"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_content_plugin_three_columns"
+}
