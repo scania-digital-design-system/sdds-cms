@@ -18,15 +18,15 @@
       "components": [
         "content-plugin.one-column",
         "content-plugin.two-columns",
+        "content-plugin.full-width-image",
+        "content-plugin.two-columns-images",
         "content-plugin.right-image",
         "content-plugin.left-image",
+        "content-plugin.overview-list",
         "content-plugin.icon-list",
-        "content-plugin.icon-preview",
         "content-plugin.code-example",
         "content-plugin.colour-list",
-        "content-plugin.overview-list",
-        "content-plugin.full-width-image",
-        "content-plugin.three-columns"
+        "content-plugin.icon-preview"
       ]
     }
   }

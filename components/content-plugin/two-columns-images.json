@@ -1,0 +1,24 @@
+{
+  "connection": "default",
+  "collectionName": "components_content_plugin_two_columns_images",
+  "info": {
+    "name": "Multi columns",
+    "icon": "qrcode"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.images"
+    },
+    "Text": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.textfield"
+    }
+  }
+}

@@ -12,6 +12,11 @@
     },
     "Text": {
       "type": "richtext"
+    },
+    "LeadText": {
+      "type": "component",
+      "repeatable": false,
+      "component": "nested.textfield"
     }
   }
 }
