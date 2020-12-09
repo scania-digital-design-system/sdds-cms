@@ -24,6 +24,11 @@
       "type": "component",
       "repeatable": true,
       "component": "nested.card"
+    },
+    "dosAndDonts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.do-and-dont"
     }
   }
 }
