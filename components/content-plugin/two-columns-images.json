@@ -19,6 +19,11 @@
       "type": "component",
       "repeatable": true,
       "component": "nested.textfield"
+    },
+    "linkCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "nested.card"
     }
   }
 }
