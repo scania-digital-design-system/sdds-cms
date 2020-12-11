@@ -44,6 +44,9 @@
         "page-plugin.tab",
         "page-plugin.article"
       ]
+    },
+    "displayLink": {
+      "type": "string"
     }
   }
 }
