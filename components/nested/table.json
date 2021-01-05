@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "components_nested_tables",
+  "info": {
+    "name": "table",
+    "icon": "table"
+  },
+  "options": {},
+  "attributes": {
+    "tableHtml": {
+      "type": "richtext"
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "Xlarge",
+        "Large",
+        "Medium",
+        "Small"
+      ]
+    },
+    "tableTitle": {
+      "type": "string"
+    }
+  }
+}
