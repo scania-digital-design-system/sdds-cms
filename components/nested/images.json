@@ -17,13 +17,22 @@
       "type": "string"
     },
     "caption": {
-      "type": "string"
+      "type": "text"
     },
     "negative": {
       "type": "boolean"
     },
     "alternate": {
       "type": "string"
+    },
+    "Size": {
+      "type": "enumeration",
+      "enum": [
+        "Xlarge",
+        "Large",
+        "Medium",
+        "Small"
+      ]
     }
   }
 }

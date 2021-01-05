@@ -47,7 +47,7 @@ const Header = () => {
   /* eslint-enable indent */
 
   const rebuildSite = () => {
-    const buildHook = 'https://api.netlify.com/build_hooks/5ee22a901845d34786696f2f';
+    const buildHook = 'https://api.netlify.com/build_hooks/5fc7a573a51aabca652bf6e0';
     const rebuildButton = document.getElementById('rebuildSiteButton');
 
     fetch(buildHook, {

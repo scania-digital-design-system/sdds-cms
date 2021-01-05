@@ -1,0 +1,40 @@
+{
+  "connection": "default",
+  "collectionName": "components_nested_cards",
+  "info": {
+    "name": "Card",
+    "icon": "list-alt"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "info": {
+      "type": "string"
+    },
+    "detail": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "linkExternal",
+        "linkInternal",
+        "download"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

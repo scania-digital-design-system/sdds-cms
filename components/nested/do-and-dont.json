@@ -1,0 +1,27 @@
+{
+  "info": {
+    "name": "DoAndDont",
+    "icon": "allergies"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Do",
+        "Dont"
+      ]
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_nested_do_and_donts"
+}
