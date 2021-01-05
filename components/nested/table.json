@@ -13,7 +13,7 @@
     "size": {
       "type": "enumeration",
       "enum": [
-        "Xlarge",
+        "XLarge",
         "Large",
         "Medium",
         "Small"
