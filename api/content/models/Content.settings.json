@@ -26,7 +26,8 @@
         "content-plugin.icon-list",
         "content-plugin.code-example",
         "content-plugin.colour-list",
-        "content-plugin.icon-preview"
+        "content-plugin.icon-preview",
+        "nested.table"
       ]
     }
   }
