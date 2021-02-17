@@ -30,6 +30,7 @@
       "enum": [
         "Xlarge",
         "Large",
+        "ExtraMedium",
         "Medium",
         "Small"
       ]
