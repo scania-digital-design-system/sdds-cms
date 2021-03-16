@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "components_nested_do_and_donts",
   "info": {
     "name": "DoAndDont",
     "icon": "allergies"
@@ -20,8 +22,14 @@
     },
     "description": {
       "type": "text"
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "Large",
+        "Medium",
+        "Small"
+      ]
     }
-  },
-  "connection": "default",
-  "collectionName": "components_nested_do_and_donts"
+  }
 }
