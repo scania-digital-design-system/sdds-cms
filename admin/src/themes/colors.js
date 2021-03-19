@@ -1,11 +1,11 @@
 const colors = {
   black: '#000000',
   white: '#ffffff',
-  red: '#D6001C',
+  red: '#DE2B36',
   orange: '#FA6E23',
   lightOrange: '#f64d0a',
   yellow: '#ffd500',
-  green: '#2C5234',
+  green: '#438151',
   blue: '#2B70D3',
   teal: '#5bc0de',
   pink: '#ff5b77',
