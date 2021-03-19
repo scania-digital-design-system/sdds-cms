@@ -36,7 +36,7 @@ const colors = {
   leftMenu: {
     'link-hover': '#3A3B3F',
     'link-color': '#fff',
-    'title-color': '#F6F6F9',
+    'title-color': '#82848A',
   },
   strapi: {
     'gray-light': '#eff3f6',
