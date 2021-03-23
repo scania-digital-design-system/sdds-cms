@@ -111,6 +111,7 @@ coverage
 exports
 .cache
 build
+.strapi-updater.json
 
 extensions/users-permissions/config/jwt.json
 
