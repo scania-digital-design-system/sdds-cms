@@ -10,9 +10,7 @@ module.exports = ({ env }) => ({
         database: env('DATABASE_NAME', 'sdds-cms'),
         username: env('DATABASE_USERNAME', 'postgress'),
         password: env('DATABASE_PASSWORD', ''),
-        ssl: {
-          rejectUnauthorized: false, // For self-signed certificates
-        },
+        ssl: false
       },
       options: {},
     },
