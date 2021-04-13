@@ -5,12 +5,14 @@ module.exports = ({ env }) => ({
       connector: 'bookshelf',
       settings: {
         client: 'postgres',
-        host: env('DATABASE_HOST', 'localhost'),
-        port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'sdds-cms'),
-        username: env('DATABASE_USERNAME', 'postgress'),
-        password: env('DATABASE_PASSWORD', ''),
-        ssl: false
+        host: process.env.DATABASE_HOST,
+        port: process.env.DATABASE_PORT,
+        database: process.env.DATABASE_NAME,
+        username: process.env.DATABASE_USERNAME,
+        password: process.env.DATABASE_PASSWORD,
+        ssl: {
+          rejectUnauthorized: false, // For self-signed certificates
+        },
       },
       options: {},
     },
