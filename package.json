@@ -18,7 +18,6 @@
     "dotenv": "^8.2.0",
     "knex": "^0.21.1",
     "pg": "^8.0.3",
-    "pg-connection-string": "^2.4.0",
     "strapi": "3.5.3",
     "strapi-admin": "3.5.3",
     "strapi-connector-bookshelf": "3.5.3",
