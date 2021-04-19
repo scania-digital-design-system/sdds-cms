@@ -1,12 +1,15 @@
 {
+  "kind": "collectionType",
   "connection": "default",
   "collectionName": "contents",
   "info": {
-    "name": "content"
+    "name": "content",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
